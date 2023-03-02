@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "joi": "^17.8.3",
+    "mongodb": "^5.1.0"
+  },
+  "name": "rexcube",
+  "description": "FInal Project for CSE 341",
+  "version": "1.0.0",
+  "main": "source.js",
+  "scripts": {
+    "start": "node source.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mbehymer/rexcube.git"
+  },
+  "author": "Kaylene, Matthew, Carly, and Mike",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mbehymer/rexcube/issues"
+  },
+  "homepage": "https://github.com/mbehymer/rexcube#readme"
+}
