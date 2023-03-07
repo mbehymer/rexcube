@@ -27,7 +27,25 @@ const updateUser = async (req, res) => {
 };
 
 const deleteUser = async (req, res) => {
-  res.status(200).json("Delete User");
+  try {
+    const userIdString = new ObjectId(req.params.id);
+
+    console.log(userIdString);
+
+    const result = await mongodb
+      .getDb()
+      .db('rexcube')
+      .collection('users')
+      .deleteOne({ _id: userIdString});
+
+    console.log(`Results Deleted: ${result.deletedCount} `);
+      if(result.deletedCount > 0){
+        res.statis(204).send();
+        console.log(`Info was Deleted. Items Deleted ${result.deletedCount}`);
+      }
+  } catch (err) {
+    res.status.json(err.message);
+  }
 };
 
 module.exports = {
@@ -35,5 +53,5 @@ module.exports = {
   getUserLogout,
   createUser,
   updateUser,
-  deleteUser,
+  deleteUser
 };

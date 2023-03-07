@@ -22,8 +22,8 @@ app
 
 .use("/", require("./routes"));
 
-app.listen(port);
-console.log(`Connected on ${port}`);
+// app.listen(port);
+// console.log(`Connected on ${port}`);
 
 mongodb.initDb((err, mongodb, next) => {
     if (err) {
