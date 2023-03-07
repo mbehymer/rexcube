@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 // const { requiresAuth } = require('express-openid-connect');
 
-const activityFunc = require('../controllers/activity.js');
+const activityFunc = require('../controller/activity');
 
 router.get('/', activityFunc.getActivity);
 
