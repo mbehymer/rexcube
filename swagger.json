@@ -1,0 +1,250 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "RexCube",
+    "description": "An API for RexCube App",
+    "version": "1.0.0"
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "schemes": [
+    "http", 
+    "https"
+  ],
+  "paths": {
+    "/activity/": {
+      "get": {
+        "tags": [
+          "Activity"
+        ],
+        "description": "Get all the activities",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/activity/{activityId}": {
+      "get": {
+        "tags": [
+          "Activity"
+        ],
+        "description": "Get a specific activity by its id",
+        "parameters": [
+          {
+            "name": "activityId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      },
+      "delete": {
+        "tags": [
+          "Activity"
+        ],
+        "description": "Delete activity by id",
+        "parameters": [
+          {
+            "name": "activityId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/activity/new": {
+      "post": {
+        "tags": [
+          "Activity"
+        ],
+        "description": "Create a new activity (admin only)",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/activity/{categoryId}": {
+      "get": {
+        "tags": [
+          "Activity"
+        ],
+        "description": "Get activity by category",
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/requests/": {
+      "get": {
+        "tags": [
+          "Activity Requests"
+        ],
+        "description": "Get all the requests",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/requests/{userId}": {
+      "get": {
+        "tags": [
+          "Activity Requests"
+        ],
+        "description": "Get requests made by specific user",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/requests/new": {
+      "post": {
+        "tags": [
+          "Activity Requests"
+        ],
+        "description": "Creates a new request",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/requests/{requestId}": {
+      "put": {
+        "tags": [
+          "Activity Requests"
+        ],
+        "description": "Update requests by requests id",
+        "parameters": [
+          {
+            "name": "requestId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Activity Requests"
+        ],
+        "description": "Delete request by request id",
+        "parameters": [
+          {
+            "name": "requestId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/category/": {
+      "post": {
+        "tags": [
+        "Category"
+      ],
+        "description": "Create new category",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Category"
+        ],
+        "description": "Update category",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/user/": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "description": "Get all users",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "description": "New user",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "description": "Upate user",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Users"
+        ],
+        "description": "Delete user",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}
