@@ -2,10 +2,10 @@ const router = require('express').Router();
 // const activityController = require
 
 
-routes.use('/activity', require('./activity.ts'));
-routes.use('/requests', require('./requests.ts'));
-routes.use('/category', require('./category.ts'));
-routes.use('/user', require('./user.ts'));
+router.use('/activity', require('./activity'));
+router.use('/requests', require('./requests'));
+router.use('/category', require('./category'));
+router.use('/user', require('./user'));
 
 
 
