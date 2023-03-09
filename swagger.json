@@ -91,10 +91,17 @@
             "description": "Internal Server Error"
           }
         }
+        "tags": [
+          "Activity"
+        ],
+        "description": "Create a new activity (admin only)",
+        "parameters": [],
+        "responses": {}
       }
     },
     "/activity/{categoryId}": {
       "get": {
+        "description": "",
         "tags": [
           "Activity"
         ],
