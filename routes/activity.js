@@ -12,6 +12,6 @@ router.post('/new', activityFunc.createActivity);
 
 router.put('/:categoryId', activityFunc.getSingleActivityByCategory);
 
-router.delete('/:activityId', activityFunc.deleteActivity);
+router.delete('/:id', activityFunc.deleteActivity);
 
 module.exports = router;

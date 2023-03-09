@@ -40,11 +40,11 @@ const deleteUser = async (req, res) => {
 
     console.log(`Results Deleted: ${result.deletedCount} `);
       if(result.deletedCount > 0){
-        res.statis(204).send();
+        res.status(204).send();
         console.log(`Info was Deleted. Items Deleted ${result.deletedCount}`);
       }
   } catch (err) {
-    res.status.json(err.message);
+    res.status(200).json(err.message);
   }
 };
 
