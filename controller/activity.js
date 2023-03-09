@@ -19,10 +19,12 @@ const createActivity = async (req, res, next) => {
     try {
         
         let activity = {
+            activityId: ObjectId(),
             location: req.body.location,
             title: req.body.title,
             info: req.body.info,
-            category: req.body.category
+            category: req.body.category,
+            weblink: req.body.weblink,
         };
         // console.log(todo);
         // console.log()

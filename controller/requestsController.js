@@ -11,6 +11,31 @@ const getRequestByUserId = async (req, res) => {
 }
 
 const createNewRequest = async (req, res) => {
+
+    try {
+        
+        let activity = {
+            activityId: ObjectId(),
+            userId: req.body.userId,
+            location: req.body.location,
+            title: req.body.title,
+            info: req.body.info,
+            category: req.body.category,
+            webLink: req.body.webLink
+        };
+
+        const result = await mongodb.getDb().db('rexcube').collection('activity')
+            .insertOne(activity);
+        if (result.acknowledged) {
+                res.status(201).json(result)
+        } else {
+            res.status(500).json({err: 'Could not create a new Todo.'})
+        }
+    } catch (err) {
+        console.log("insertTodo: ",err)
+    }
+
+
     res.status(201).json('Post new request');
 }
 
