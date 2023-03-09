@@ -56,6 +56,41 @@
     },
     "/activity/new": {
       "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "location": {
+                  "example": "any"
+                },
+                "title": {
+                  "example": "any"
+                },
+                "info": {
+                  "example": "any"
+                },
+                "category": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
         "tags": [
           "Activity"
         ],
@@ -66,6 +101,7 @@
     },
     "/activity/{categoryId}": {
       "get": {
+        "description": "",
         "tags": [
           "Activity"
         ],

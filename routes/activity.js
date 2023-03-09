@@ -10,7 +10,7 @@ router.get('/:activityId', activityFunc.getSingleActivityById);
 
 router.post('/new', activityFunc.createActivity);
 
-router.put('/:categoryId', activityFunc.getSingleActivityByCategory);
+router.get('/:categoryId', activityFunc.getSingleActivityByCategory);
 
 router.delete('/:id', activityFunc.deleteActivity);
 
