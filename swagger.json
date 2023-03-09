@@ -1,48 +1,26 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "RexCube",
-    "description": "An API for RexCube App",
+    "title": "My API",
+    "description": "Description",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "https://rexcube.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http", 
-    "https"
+    "http"
   ],
   "paths": {
     "/activity/": {
       "get": {
-        "tags": [
-          "Activity"
-        ],
-        "description": "Get all the activities",
+        "description": "",
         "parameters": [],
         "responses": {}
       }
     },
     "/activity/{activityId}": {
       "get": {
-        "tags": [
-          "Activity"
-        ],
-        "description": "Get a specific activity by its id",
-        "parameters": [
-          {
-            "name": "activityId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {}
-      },
-      "delete": {
-        "tags": [
-          "Activity"
-        ],
-        "description": "Delete activity by id",
+        "description": "",
         "parameters": [
           {
             "name": "activityId",
@@ -75,6 +53,9 @@
                 },
                 "category": {
                   "example": "any"
+                },
+                "website": {
+                  "example": "any"
                 }
               }
             }
@@ -84,28 +65,15 @@
           "201": {
             "description": "Created"
           },
-          "422": {
-            "description": "Unprocessable Entity"
-          },
           "500": {
             "description": "Internal Server Error"
           }
-        },
-        "tags": [
-          "Activity"
-        ],
-        "description": "Create a new activity (admin only)",
-        "parameters": [],
-        "responses": {}
+        }
       }
     },
     "/activity/{categoryId}": {
       "get": {
         "description": "",
-        "tags": [
-          "Activity"
-        ],
-        "description": "Get activity by category",
         "parameters": [
           {
             "name": "categoryId",
@@ -117,12 +85,30 @@
         "responses": {}
       }
     },
+    "/activity/{id}": {
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
     "/requests/": {
       "get": {
-        "tags": [
-          "Activity Requests"
-        ],
-        "description": "Get all the requests",
+        "description": "",
         "parameters": [],
         "responses": {
           "200": {
@@ -133,10 +119,7 @@
     },
     "/requests/{userId}": {
       "get": {
-        "tags": [
-          "Activity Requests"
-        ],
-        "description": "Get requests made by specific user",
+        "description": "",
         "parameters": [
           {
             "name": "userId",
@@ -154,24 +137,49 @@
     },
     "/requests/new": {
       "post": {
-        "tags": [
-          "Activity Requests"
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "example": "any"
+                },
+                "location": {
+                  "example": "any"
+                },
+                "title": {
+                  "example": "any"
+                },
+                "info": {
+                  "example": "any"
+                },
+                "category": {
+                  "example": "any"
+                },
+                "webLink": {
+                  "example": "any"
+                }
+              }
+            }
+          }
         ],
-        "description": "Creates a new request",
-        "parameters": [],
         "responses": {
           "201": {
             "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
     },
     "/requests/{requestId}": {
       "put": {
-        "tags": [
-          "Activity Requests"
-        ],
-        "description": "Update requests by requests id",
+        "description": "",
         "parameters": [
           {
             "name": "requestId",
@@ -181,16 +189,16 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "204": {
+            "description": "No Content"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
       "delete": {
-        "tags": [
-          "Activity Requests"
-        ],
-        "description": "Delete request by request id",
+        "description": "",
         "parameters": [
           {
             "name": "requestId",
@@ -202,28 +210,16 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "204": {
+            "description": "No Content"
           }
         }
       }
     },
     "/category/": {
       "post": {
-        "tags": [
-        "Category"
-      ],
-        "description": "Create new category",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Category"
-        ],
-        "description": "Update category",
+        "description": "",
         "parameters": [],
         "responses": {
           "200": {
@@ -232,12 +228,30 @@
         }
       }
     },
+    "/category/{categoryId}": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/user/": {
       "get": {
-        "tags": [
-          "Users"
-        ],
-        "description": "Get all users",
+        "description": "",
         "parameters": [],
         "responses": {
           "200": {
@@ -246,38 +260,46 @@
         }
       },
       "post": {
-        "tags": [
-          "Users"
-        ],
-        "description": "New user",
+        "description": "",
         "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
           }
         }
-      },
-      "put": {
-        "tags": [
-          "Users"
-        ],
-        "description": "Upate user",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
+      }
+    },
+    "/user/id": {
       "delete": {
-        "tags": [
-          "Users"
-        ],
-        "description": "Delete user",
+        "description": "",
         "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/user/{userId}": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
