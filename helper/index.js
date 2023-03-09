@@ -1,21 +1,54 @@
 const Joi = require("joi");
 
-// function validateMovie(movie) {
-//   const JoiSchema = Joi.object({
-//     movie_id: Joi.string().min(1).max(2).required(),
+function validateUser(user) {
+  const JoiSchema = Joi.object({
+    email: Joi.email().required(),
+    userName: Joi.min(5).max(20).required(),
+    isAdmin: Joi.required(),
+    favorites: Joi.array().items(Joi.string()), //Make sure each Id is a string
+  }).options({ abortEarly: false });
 
-//     title: Joi.string().min(1).max(50).required(),
+  return JoiSchema.validate(user);
+}
 
-//     rating: Joi.string().min(1).max(5).required(),
+function validateActivity(activity) {
+  const JoiSchema = Joi.object({
+    activityId: Joi.number().required(),
+    location: Joi.string().required(),
+    title: Joi.string().min(1).max(25).required(),
+    info: Joi.string().required(),
+    category: Joi.array().items(Joi.string()), //Make sure each Id is a string
+  }).options({ abortEarly: false });
 
-//     plot: Joi.string().min(20).max(1000).optional(),
+  return JoiSchema.validate(activity);
+}
 
-//     length: Joi.string().required(),
-//   }).options({ abortEarly: false });
+function validateRequest(request) {
+  const JoiSchema = Joi.object({
+    isPublic: Joi.bool().required(),
+    userId: Joi.number().required(),
+    location: Joi.string().required(),
+    title: Joi.string().required(),
+    info: Joi.string().required(),
+    Category: Joi.string().require(),
+    webLink: Joi.string().required(),
+  }).options({ abortEarly: false });
 
-//   return JoiSchema.validate(movie);
-// }
+  return JoiSchema.validate(request);
+}
 
-// module.exports = {
-//   validateMovie,
-// };
+function validateCategory(category) {
+  const JoiSchema = Joi.object({
+    // userId: Joi.number().required(),
+    categoryName: Joi.string().required(),
+  }).options({ abortEarly: false });
+
+  return JoiSchema.validate(category);
+}
+
+module.exports = {
+  validateUser,
+  validateActivity,
+  validateRequest,
+  validateCategory
+};
