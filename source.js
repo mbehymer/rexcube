@@ -2,8 +2,11 @@ const express = require("express");
 const mongodb = require("./db/connect");
 const bodyParser = require("body-parser");
 
+const cors = require("cors");
 
 const app = express();
+
+app.use(cors());
 
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
