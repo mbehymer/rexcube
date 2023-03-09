@@ -5,6 +5,6 @@ routes.get('/', controller.getUserLogin);
 routes.get('/', controller.getUserLogout);
 routes.post('/', controller.createUser);
 routes.put('/', controller.updateUser);
-routes.delete('/:id', controller.deleteUser);
+routes.delete('/id', controller.deleteUser);
 
 module.exports = routes;
