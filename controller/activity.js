@@ -19,12 +19,12 @@ const createActivity = async (req, res, next) => {
     try {
         
         let activity = {
-            activityId: ObjectId(),
+            act_id: new ObjectId(),
             location: req.body.location,
             title: req.body.title,
             info: req.body.info,
             category: req.body.category,
-            weblink: req.body.weblink,
+            website: req.body.website,
         };
         // console.log(todo);
         // console.log()
@@ -35,7 +35,10 @@ const createActivity = async (req, res, next) => {
         //     return;
         // }
 
-        const result = await mongodb.getDb().db('rexcube').collection('activity')
+        const result = await mongodb
+            .getDb()
+            .db('rexcube')
+            .collection('activity')
             .insertOne(activity);
         if (result.acknowledged) {
                 res.status(201).json(result)

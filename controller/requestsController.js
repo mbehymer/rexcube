@@ -12,10 +12,19 @@ const getRequestByUserId = async (req, res) => {
 
 const createNewRequest = async (req, res) => {
 
+    // {
+    //     "userId": "1",
+    //     "location": "North West",
+    //     "title": "Rock Climbing",
+    //     "info": "Student night Thursday $11, Rock Gym",
+    //     "category": ["Indoors", "Active"],
+    //     "webLink": "throckgymrexburg.com"
+    //   }
+
     try {
         
-        let activity = {
-            activityId: ObjectId(),
+        let request = {
+            activityId: new ObjectId(),
             userId: req.body.userId,
             location: req.body.location,
             title: req.body.title,
@@ -24,8 +33,8 @@ const createNewRequest = async (req, res) => {
             webLink: req.body.webLink
         };
 
-        const result = await mongodb.getDb().db('rexcube').collection('activity')
-            .insertOne(activity);
+        const result = await mongodb.getDb().db('rexcube').collection('requests')
+            .insertOne(request);
         if (result.acknowledged) {
                 res.status(201).json(result)
         } else {
