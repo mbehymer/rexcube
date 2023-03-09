@@ -15,11 +15,37 @@ const createNewRequest = async (req, res) => {
 }
 
 const updateRequest = async (req, res) => {
-    res.status(200).json('Update request by request Id');
+    try{
+        const requestId = new ObjectId(req.params.requestId);
+        const result = new mongodb.getDb().db('rexcube').collection('requests').replaceOne({_id:requestId}, req.body);
+        if (result.modifiedCount != 0) {
+            res.status(204).send();
+        } 
+    } catch {
+        res.status(500).send(err.message);
+    }
 }
 
 const deleteRequest = async (req, res) => {
-    res.status(200).json('Delete request by request Id');
+    try {
+        const userIdString = new ObjectId(req.params.id);
+    
+        console.log(userIdString);
+    
+        const result = await mongodb
+          .getDb()
+          .db('rexcube')
+          .collection('requests')
+          .deleteOne({ _id: userIdString});
+    
+        console.log(`Results Deleted: ${result.deletedCount} `);
+          if(result.deletedCount > 0){
+            res.status(204).send();
+            console.log(`Info was Deleted. Items Deleted ${result.deletedCount}`);
+          }
+      } catch (err) {
+        res.status(200).json(err.message);
+      }
 }
 
 module.exports = {getAllRequests, getRequestByUserId, createNewRequest, updateRequest, deleteRequest};
