@@ -1,26 +1,33 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "My API",
-    "description": "Description",
+    "title": "RexCube",
+    "description": "An API for RexCube App",
     "version": "1.0.0"
   },
   "host": "localhost:8080",
   "basePath": "/",
   "schemes": [
-    "http"
+    "http", 
+    "https"
   ],
   "paths": {
     "/activity/": {
       "get": {
-        "description": "",
+        "tags": [
+          "Activity"
+        ],
+        "description": "Get all the activities",
         "parameters": [],
         "responses": {}
       }
     },
     "/activity/{activityId}": {
       "get": {
-        "description": "",
+        "tags": [
+          "Activity"
+        ],
+        "description": "Get a specific activity by its id",
         "parameters": [
           {
             "name": "activityId",
@@ -32,7 +39,10 @@
         "responses": {}
       },
       "delete": {
-        "description": "",
+        "tags": [
+          "Activity"
+        ],
+        "description": "Delete activity by id",
         "parameters": [
           {
             "name": "activityId",
@@ -81,11 +91,21 @@
             "description": "Internal Server Error"
           }
         }
+        "tags": [
+          "Activity"
+        ],
+        "description": "Create a new activity (admin only)",
+        "parameters": [],
+        "responses": {}
       }
     },
     "/activity/{categoryId}": {
       "get": {
         "description": "",
+        "tags": [
+          "Activity"
+        ],
+        "description": "Get activity by category",
         "parameters": [
           {
             "name": "categoryId",
@@ -97,9 +117,12 @@
         "responses": {}
       }
     },
-    "/requests/requests": {
+    "/requests/": {
       "get": {
-        "description": "",
+        "tags": [
+          "Activity Requests"
+        ],
+        "description": "Get all the requests",
         "parameters": [],
         "responses": {
           "200": {
@@ -108,9 +131,12 @@
         }
       }
     },
-    "/requests/requests/{userId}": {
+    "/requests/{userId}": {
       "get": {
-        "description": "",
+        "tags": [
+          "Activity Requests"
+        ],
+        "description": "Get requests made by specific user",
         "parameters": [
           {
             "name": "userId",
@@ -126,9 +152,12 @@
         }
       }
     },
-    "/requests/requests/new": {
+    "/requests/new": {
       "post": {
-        "description": "",
+        "tags": [
+          "Activity Requests"
+        ],
+        "description": "Creates a new request",
         "parameters": [],
         "responses": {
           "201": {
@@ -137,9 +166,12 @@
         }
       }
     },
-    "/requests/requests/{requestId}": {
+    "/requests/{requestId}": {
       "put": {
-        "description": "",
+        "tags": [
+          "Activity Requests"
+        ],
+        "description": "Update requests by requests id",
         "parameters": [
           {
             "name": "requestId",
@@ -155,7 +187,10 @@
         }
       },
       "delete": {
-        "description": "",
+        "tags": [
+          "Activity Requests"
+        ],
+        "description": "Delete request by request id",
         "parameters": [
           {
             "name": "requestId",
@@ -173,7 +208,10 @@
     },
     "/category/": {
       "post": {
-        "description": "",
+        "tags": [
+        "Category"
+      ],
+        "description": "Create new category",
         "parameters": [],
         "responses": {
           "200": {
@@ -182,7 +220,10 @@
         }
       },
       "put": {
-        "description": "",
+        "tags": [
+          "Category"
+        ],
+        "description": "Update category",
         "parameters": [],
         "responses": {
           "200": {
@@ -193,7 +234,10 @@
     },
     "/user/": {
       "get": {
-        "description": "",
+        "tags": [
+          "Users"
+        ],
+        "description": "Get all users",
         "parameters": [],
         "responses": {
           "200": {
@@ -202,7 +246,10 @@
         }
       },
       "post": {
-        "description": "",
+        "tags": [
+          "Users"
+        ],
+        "description": "New user",
         "parameters": [],
         "responses": {
           "200": {
@@ -211,7 +258,10 @@
         }
       },
       "put": {
-        "description": "",
+        "tags": [
+          "Users"
+        ],
+        "description": "Upate user",
         "parameters": [],
         "responses": {
           "200": {
@@ -220,7 +270,10 @@
         }
       },
       "delete": {
-        "description": "",
+        "tags": [
+          "Users"
+        ],
+        "description": "Delete user",
         "parameters": [],
         "responses": {
           "200": {

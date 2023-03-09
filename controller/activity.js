@@ -53,7 +53,25 @@ const getSingleActivityByCategory = async (req, res, next) => {
 
 const deleteActivity = async (req, res, next) => {
     
-    return "deleteActivity";
+    try {
+        const userIdString = new ObjectId(req.params.id);
+    
+        console.log(userIdString);
+    
+        const result = await mongodb
+          .getDb()
+          .db('rexcube')
+          .collection('activity')
+          .deleteOne({ _id: userIdString});
+    
+        console.log(`Results Deleted: ${result.deletedCount} `);
+          if(result.deletedCount > 0){
+            res.status(204).send();
+            console.log(`Info was Deleted. Items Deleted ${result.deletedCount}`);
+          }
+      } catch (err) {
+        res.status(200).json(err.message);
+      }
     
 };
 
