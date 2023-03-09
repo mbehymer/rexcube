@@ -15,7 +15,15 @@ const createNewRequest = async (req, res) => {
 }
 
 const updateRequest = async (req, res) => {
-    res.status(200).json('Update request by request Id');
+    try{
+        const requestId = new ObjectId(req.params.requestId);
+        const result = new mongodb.getDb().db('rexcube').collection('requests').replaceOne({_id:requestId}, req.body);
+        if (result.modifiedCount != 0) {
+            res.status(204).send();
+        } 
+    } catch {
+        res.status(500).send(err.message);
+    }
 }
 
 const deleteRequest = async (req, res) => {
