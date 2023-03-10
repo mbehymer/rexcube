@@ -2,3 +2,6 @@
 DELETE http://localhost:8080/user/640766ff36b18da5e16a9ceb HTTP/1.1
 ###
 GET http://localhost:8080/activity/ HTTP/1.1
+
+###
+GET http://localhost:8080/activity/640a06f28ce1d61f91897128 HTTP/1.1
