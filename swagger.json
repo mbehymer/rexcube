@@ -1,26 +1,33 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "My API",
-    "description": "Description",
+    "title": "RexCube",
+    "description": "An API for RexCube App",
     "version": "1.0.0"
   },
   "host": "rexcube.onrender.com",
   "basePath": "/",
   "schemes": [
-    "https"
+    "https",
+    "http"
   ],
   "paths": {
     "/activity/": {
       "get": {
-        "description": "",
+        "tags": [
+          "Activity"
+        ],
+        "description": "Get all the activities",
         "parameters": [],
         "responses": {}
       }
     },
     "/activity/{activityId}": {
       "get": {
-        "description": "",
+        "tags": [
+          "Activity"
+        ],
+        "description": "Get a specific activity by its id",
         "parameters": [
           {
             "name": "activityId",
@@ -34,7 +41,10 @@
     },
     "/activity/new": {
       "post": {
-        "description": "",
+        "tags": [
+          "Activity"
+        ],
+        "description": "Create a new activity (admin only)",
         "parameters": [
           {
             "name": "body",
@@ -52,7 +62,7 @@
                   "example": "any"
                 },
                 "category": {
-                  "example": "any"
+                  "example": [1,7,4]
                 },
                 "website": {
                   "example": "any"
@@ -73,7 +83,10 @@
     },
     "/activity/{categoryId}": {
       "get": {
-        "description": "",
+        "tags": [
+          "Activity"
+        ],
+        "description": "Get activity by category",
         "parameters": [
           {
             "name": "categoryId",
@@ -87,7 +100,10 @@
     },
     "/activity/{id}": {
       "delete": {
-        "description": "",
+        "tags": [
+          "Activity"
+        ],
+        "description": "Delete activity by id",
         "parameters": [
           {
             "name": "id",
@@ -108,7 +124,10 @@
     },
     "/requests/": {
       "get": {
-        "description": "",
+        "tags": [
+          "Activity Requests"
+        ],
+        "description": "Get all the requests",
         "parameters": [],
         "responses": {
           "200": {
@@ -119,7 +138,10 @@
     },
     "/requests/{userId}": {
       "get": {
-        "description": "",
+        "tags": [
+          "Activity Requests"
+        ],
+        "description": "Get requests made by specific user",
         "parameters": [
           {
             "name": "userId",
@@ -137,7 +159,10 @@
     },
     "/requests/new": {
       "post": {
-        "description": "",
+        "tags": [
+          "Activity Requests"
+        ],
+        "description": "Creates a new request",
         "parameters": [
           {
             "name": "body",
@@ -179,13 +204,43 @@
     },
     "/requests/{requestId}": {
       "put": {
-        "description": "",
+        "tags": [
+          "Activity Requests"
+        ],
+        "description": "Update requests by requests id",
         "parameters": [
           {
             "name": "requestId",
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "example": "any"
+                },
+                "location": {
+                  "example": "any"
+                },
+                "title": {
+                  "example": "any"
+                },
+                "info": {
+                  "example": "any"
+                },
+                "category": {
+                  "example": "any"
+                },
+                "webLink": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -198,7 +253,10 @@
         }
       },
       "delete": {
-        "description": "",
+        "tags": [
+          "Activity Requests"
+        ],
+        "description": "Delete request by request id",
         "parameters": [
           {
             "name": "requestId",
@@ -219,7 +277,10 @@
     },
     "/category/": {
       "post": {
-        "description": "",
+        "tags": [
+          "Category"
+        ],
+        "description": "Create new category",
         "parameters": [],
         "responses": {
           "200": {
@@ -230,7 +291,10 @@
     },
     "/category/{categoryId}": {
       "put": {
-        "description": "",
+        "tags": [
+          "Category"
+        ],
+        "description": "Update category",
         "parameters": [
           {
             "name": "categoryId",
@@ -238,6 +302,7 @@
             "required": true,
             "type": "string"
           }
+          
         ],
         "responses": {
           "204": {
@@ -251,7 +316,10 @@
     },
     "/user/": {
       "get": {
-        "description": "",
+        "tags": [
+          "Users"
+        ],
+        "description": "Get all users",
         "parameters": [],
         "responses": {
           "200": {
@@ -260,7 +328,10 @@
         }
       },
       "post": {
-        "description": "",
+        "tags": [
+          "Users"
+        ],
+        "description": "New user",
         "parameters": [],
         "responses": {
           "200": {
@@ -271,7 +342,10 @@
     },
     "/user/id": {
       "delete": {
-        "description": "",
+        "tags": [
+          "Users"
+        ],
+        "description": "Delete user",
         "parameters": [],
         "responses": {
           "200": {
@@ -285,13 +359,37 @@
     },
     "/user/{userId}": {
       "put": {
-        "description": "",
+        "tags": [
+          "Users"
+        ],
+        "description": "Update user",
         "parameters": [
           {
             "name": "userId",
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "example": "any"
+                },
+                "username":{
+                  "example":"any"
+                },
+                "favorites": {
+                  "example": [3,1,9]
+                },
+                "isAdmin":{
+                  "example":false
+                }
+              }
+            }
           }
         ],
         "responses": {
