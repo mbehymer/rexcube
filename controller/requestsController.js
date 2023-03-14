@@ -3,6 +3,9 @@ const ObjectId = require('mongodb').ObjectId;
 // const valid = require('../helper');
 
 const getAllRequests = async (req, res) => {
+    // #swagger.tags = ['Activity Requests']
+    // #swagger.description = "Get all the activity request"
+
     // Not working
     try {
         const result = await mongodb.getDb()
@@ -18,6 +21,9 @@ const getAllRequests = async (req, res) => {
 }
 
 const getRequestByUserId = async (req, res) => {
+    // #swagger.tags = ['Activity Requests']
+    // #swagger.description = "Get request by id"
+
     // Not working
 
     try {
@@ -37,6 +43,8 @@ const getRequestByUserId = async (req, res) => {
 }
 
 const createNewRequest = async (req, res) => {
+    // #swagger.tags = ['Activity Requests']
+    // #swagger.description = "Create a new activity request"
 
     // {
     //     "userId": "1",
@@ -75,6 +83,42 @@ const createNewRequest = async (req, res) => {
 }
 
 const updateRequest = async (req, res) => {
+    // #swagger.tags = ['Activity Requests']
+    // #swagger.description = "Update activity request by id"
+
+    //#swagger.parameters['requestId'] = {
+        //     "in": "path",
+        //     "required": true,
+        //     "type": "string"
+        //   },
+        //   {
+        //     "name": "body",
+        //     "in": "body",
+        //     "schema": {
+        //       "type": "object",
+        //       "properties": {
+        //         "userId": {
+        //           "example": "any"
+        //         },
+        //         "location": {
+        //           "example": "any"
+        //         },
+        //         "title": {
+        //           "example": "any"
+        //         },
+        //         "info": {
+        //           "example": "any"
+        //         },
+        //         "category": {
+        //           "example": "any"
+        //         },
+        //         "webLink": {
+        //           "example": "any"
+        //         }
+        //       }
+        //     }
+        //   }
+
     try {
         const requestId = new ObjectId(req.params.requestId);
         const result = new mongodb.getDb().db('rexcube').collection('requests').replaceOne({ _id: requestId }, req.body);
@@ -87,6 +131,9 @@ const updateRequest = async (req, res) => {
 }
 
 const deleteRequest = async (req, res) => {
+    // #swagger.tags = ['Activity Requests']
+    // #swagger.description = "Delete activity request by id"
+
     try {
         const userIdString = new ObjectId(req.params.id);
 
