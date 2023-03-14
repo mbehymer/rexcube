@@ -15,7 +15,7 @@
   "main": "source.js",
   "scripts": {
     "start": "node source.js",
-    "swagger": "node ./routes/swagger.js",
+    "swagger": "node ./swagger.js",
     "dev-start": "nodemon server.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
