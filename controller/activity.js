@@ -6,9 +6,8 @@ const mongodb = require('../db/connect.js');
 
 const getActivity = async (req, res, next) => {
 
-  // NOT WORKING
   try {
-    const result = await mongodb.getDb()
+    const result = await mongodb
       .getDb()
       .db('rexcube')
       .collection('activity').find();
@@ -22,8 +21,6 @@ const getActivity = async (req, res, next) => {
 };
 
 const getSingleActivityById = async (req, res, next) => {
-
-  // WORKING!!!
 
   try {
     const activityId = new ObjectId(req.params.activityId);
@@ -44,15 +41,17 @@ const getSingleActivityById = async (req, res, next) => {
 
 
 const getSingleActivityByCategory = async (req, res, next) => {
-  // WORKING!!!
 
   try {
-    const categoryId = new ObjectId(req.params.categoryId);
+    const categoryId = req.params.categoryId;
+
     const result = await mongodb
       .getDb()
       .db('rexcube')
       .collection('activity')
-      .find({ categoryId: categoryId });
+      .find({ category: { $in: [categoryId] } }).pretty();
+
+
     result.toArray().then((lists) => {
       res.setHeader('Content-Type', 'application/json');
       res.status(200).json(lists);
