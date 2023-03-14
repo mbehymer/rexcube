@@ -3,10 +3,16 @@ const ObjectId = require("mongodb").ObjectId;
 const valid = require("../helper/index");
 
 const createCategory = async (req, res) => {
+    // #swagger.tags = ['Category']
+    // #swagger.description = "Creat category"
+
   res.status(200).json("Create User");
 };
 
 const updateCategory = async (req, res) => {
+  // #swagger.tags = ['Category']
+  // #swagger.description = "Update category by id"
+
   try{
     const categoryId = new ObjectId(req.params.categoryId);
     const result = new mongodb.getDb().db('rexcube').collection('category').replaceOne({_id:categoryId}, req.body);

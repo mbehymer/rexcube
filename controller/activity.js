@@ -5,6 +5,10 @@ const ObjectId = require('mongodb').ObjectId;
 const mongodb = require('../db/connect.js');
 
 const getActivity = async (req, res, next) => {
+    // #swagger.tags = ['Activity']
+      // #swagger.description = "Get all the activities"
+
+
 
   try {
     const result = await mongodb
@@ -21,6 +25,8 @@ const getActivity = async (req, res, next) => {
 };
 
 const getSingleActivityById = async (req, res, next) => {
+  // #swagger.tags = ['Activity']
+  // #swagger.description = "Get a specific activity by its id"
 
   try {
     const activityId = new ObjectId(req.params.activityId);
@@ -41,6 +47,12 @@ const getSingleActivityById = async (req, res, next) => {
 
 
 const getSingleActivityByCategory = async (req, res, next) => {
+
+  // #swagger.tags = ['Activity']
+  // #swagger.description = "Get activity by category"
+
+  // WORKING!!!
+
 
   try {
     const categoryId = req.params.categoryId;
@@ -64,7 +76,9 @@ const getSingleActivityByCategory = async (req, res, next) => {
 };
 
 const createActivity = async (req, res, next) => {
-
+    // #swagger.tags = ['Activity']
+    // #swagger.description = "Create a new activity(admin only)"
+ 
   try {
 
     let activity = {
@@ -101,6 +115,9 @@ const createActivity = async (req, res, next) => {
 
 
 const deleteActivity = async (req, res, next) => {
+  // #swagger.tags = ['Activity']
+  // #swagger.description = "Delete activity by id"
+
 
   try {
     const userIdString = new ObjectId(req.params.id);

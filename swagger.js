@@ -2,12 +2,15 @@ const swaggerAutogen = require('swagger-autogen')();
 
 const doc = {
   info: {
-    title: 'My API',
-    description: 'Description',
+
+    title: 'RexCube',
+    description: 'An API for RexCube App',
   },
   host: 'https://rexcube.onrender.com',
   // host: 'localhost:8080',
-  schemes: ['https'],
+  schemes: ['https', 'http'],
+
+
 };
 
 const outputFile = './swagger.json';

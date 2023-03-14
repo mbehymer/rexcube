@@ -3,20 +3,61 @@ const ObjectId = require("mongodb").ObjectId;
 const valid = require("../helper/index");
 
 const getUserLogin = async (req, res) => {
+  // #swagger.tags = ['User']
+
+
   // Will work once Oauth is implemented
   res.send(JSON.stringify(req.oidc.user));
 
 };
 
 const getUserLogout = async (req, res) => {
+  // #swagger.tags = ['User']
+
   res.status(200).json("Logout User");
 };
 
 const createUser = async (req, res) => {
+  // #swagger.tags = ['User']
+  // #swagger.description = "Create a new user"
+
+
   res.status(200).json("Create User");
 };
 
 const updateUser = async (req, res) => {
+  // #swagger.tags = ['User']
+  // #swagger.description = "Update user by id"
+
+  // #swagger.parameters['userId'] = {
+    // "in": "path",
+    // "required": true,
+    // "type": "string"
+  // },
+  // {
+  //   "name": "body",
+  //   "in": "body",
+  //   "schema": {
+  //     "type": "object",
+  //     "properties": {
+  //       "email": {
+  //         "example": "any"
+  //       },
+  //       "username":{
+  //         "example":"any"
+  //       },
+  //       "favorites": {
+  //         "example": [3,1,9]
+  //       },
+  //       "isAdmin":{
+  //         "example":false
+  //       }
+  //     }
+  //   }
+  // }
+  
+
+  
   try {
     const userId = new ObjectId(req.params.requestId);
     const result = new mongodb.getDb().db('rexcube').collection('users').replaceOne({ _id: userId }, req.body);
@@ -29,6 +70,10 @@ const updateUser = async (req, res) => {
 };
 
 const deleteUser = async (req, res) => {
+  // #swagger.tags = ['User']
+  // #swagger.description = "Delete user by id"
+
+
   try {
     const userIdString = new ObjectId(req.params.id);
 
