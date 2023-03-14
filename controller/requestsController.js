@@ -7,8 +7,9 @@ const getAllRequests = async (req, res) => {
     // #swagger.description = "Get all the activity request"
 
     // Not working
+
     try {
-        const result = await mongodb.getDb()
+        const result = await mongodb
             .getDb()
             .db('rexcube')
             .collection('requests').find();
@@ -26,8 +27,9 @@ const getRequestByUserId = async (req, res) => {
 
     // Not working
 
+
     try {
-        const userId = new ObjectId(req.params.userId);
+        const userId = req.params.userId;
         const result = await mongodb
             .getDb()
             .db('rexcube')

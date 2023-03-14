@@ -10,9 +10,8 @@ const getActivity = async (req, res, next) => {
 
 
 
-  // NOT WORKING
   try {
-    const result = await mongodb.getDb()
+    const result = await mongodb
       .getDb()
       .db('rexcube')
       .collection('activity').find();
@@ -28,8 +27,6 @@ const getActivity = async (req, res, next) => {
 const getSingleActivityById = async (req, res, next) => {
   // #swagger.tags = ['Activity']
   // #swagger.description = "Get a specific activity by its id"
-
-  // WORKING!!!
 
   try {
     const activityId = new ObjectId(req.params.activityId);
@@ -50,18 +47,24 @@ const getSingleActivityById = async (req, res, next) => {
 
 
 const getSingleActivityByCategory = async (req, res, next) => {
+
   // #swagger.tags = ['Activity']
   // #swagger.description = "Get activity by category"
 
   // WORKING!!!
 
+
   try {
-    const categoryId = new ObjectId(req.params.categoryId);
+    const categoryId = req.params.categoryId;
+    const categoryIdInt = parseInt(categoryId)
+
     const result = await mongodb
       .getDb()
       .db('rexcube')
       .collection('activity')
-      .find({ categoryId: categoryId });
+      .find({ category: { $in: [categoryIdInt] } });
+
+
     result.toArray().then((lists) => {
       res.setHeader('Content-Type', 'application/json');
       res.status(200).json(lists);
