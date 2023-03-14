@@ -44,12 +44,13 @@ const getSingleActivityByCategory = async (req, res, next) => {
 
   try {
     const categoryId = req.params.categoryId;
+    const categoryIdInt = parseInt(categoryId)
 
     const result = await mongodb
       .getDb()
       .db('rexcube')
       .collection('activity')
-      .find({ category: { $in: [categoryId] } }).pretty();
+      .find({ category: { $in: [categoryIdInt] } });
 
 
     result.toArray().then((lists) => {
