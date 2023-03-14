@@ -17,7 +17,9 @@ const getSingleActivityById = async (req, res, next) => {
 const createActivity = async (req, res, next) => {
     
     try {
-        
+        console.log(req);
+        console.log("=============================================");
+        console.log(req.body);
         let activity = {
             act_id: new ObjectId(),
             location: req.body.location,

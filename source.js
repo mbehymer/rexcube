@@ -22,8 +22,9 @@ app
     res.setHeader("Access-Control-Allow-Origin", "*");
     next();
 })
-
 .use("/", require("./routes"));
+
+app.use(express.urlencoded({extended: true})); 
 
 // app.listen(port);
 // console.log(`Connected on ${port}`);

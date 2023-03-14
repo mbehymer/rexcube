@@ -8,6 +8,11 @@ router.get('/', activityFunc.getActivity);
 
 router.get('/:activityId', activityFunc.getSingleActivityById);
 
+// router.get('/new', (req, res) => {
+//     res.send(__dirname + "/index.html");
+//   });
+
+
 router.post('/new', activityFunc.createActivity);
 
 router.get('/:categoryId', activityFunc.getSingleActivityByCategory);
