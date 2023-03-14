@@ -3,9 +3,8 @@ const ObjectId = require('mongodb').ObjectId;
 // const valid = require('../helper');
 
 const getAllRequests = async (req, res) => {
-    // Not working
     try {
-        const result = await mongodb.getDb()
+        const result = await mongodb
             .getDb()
             .db('rexcube')
             .collection('requests').find();
@@ -18,10 +17,9 @@ const getAllRequests = async (req, res) => {
 }
 
 const getRequestByUserId = async (req, res) => {
-    // Not working
 
     try {
-        const userId = new ObjectId(req.params.userId);
+        const userId = req.params.userId;
         const result = await mongodb
             .getDb()
             .db('rexcube')

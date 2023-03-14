@@ -16,23 +16,23 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 const port = process.env.PORT || 8080;
 
-app 
-.use(bodyParser.json())
-.use((req, res, next) => {
+app
+  .use(bodyParser.json())
+  .use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     next();
-})
+  })
 
-.use("/", require("./routes"));
+  .use("/", require("./routes"));
 
 // app.listen(port);
 // console.log(`Connected on ${port}`);
 
 mongodb.initDb((err, mongodb, next) => {
-    if (err) {
-      console.log(err);
-    } else {
-      app.listen(port);
-      console.log(`Connected to DB and listening on ${port}`);
-    }
-  });
+  if (err) {
+    console.log(err);
+  } else {
+    app.listen(port);
+    console.log(`Connected to DB and listening on ${port}`);
+  }
+});
