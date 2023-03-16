@@ -6,7 +6,7 @@ const doc = {
     title: 'RexCube',
     description: 'An API for RexCube App',
   },
-  host: 'https://rexcube.onrender.com',
+  host: 'rexcube.onrender.com',
   // host: 'localhost:8080',
   schemes: ['https', 'http'],
 
