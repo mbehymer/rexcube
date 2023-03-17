@@ -1,6 +1,8 @@
 const express = require("express");
 const mongodb = require("./db/connect");
 const bodyParser = require("body-parser");
+const { checkUser } = require('./helper/checkUser');
+
 const { auth, requiresAuth } = require('express-openid-connect');
 
 
@@ -53,8 +55,6 @@ app
 
   .use("/", require("./routes"));
 
-// app.listen(port);
-// console.log(`Connected on ${port}`);
 
 mongodb.initDb((err, mongodb, next) => {
   if (err) {
