@@ -367,8 +367,11 @@
         "description": "Create a new user",
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "OK"
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }

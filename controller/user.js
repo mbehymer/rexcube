@@ -9,6 +9,8 @@ const getUserLogin = async (req, res) => {
   // Will work once Oauth is implemented
   res.send(JSON.stringify(req.oidc.user));
 
+
+
 };
 
 const getUserLogout = async (req, res) => {
@@ -21,8 +23,38 @@ const createUser = async (req, res) => {
   // #swagger.tags = ['User']
   // #swagger.description = "Create a new user"
 
+  try {
+    const userEmail = req.oidc.user.email;
 
-  res.status(200).json("Create User");
+    const isUserAdded = await mongodb
+      .getDb()
+      .db('rexcube')
+      .collection('users')
+      .find({ email: userEmail }).count();
+
+    if (isUserAdded === 0) {
+      let userAccount = {
+        email: req.oidc.user.email,
+        userName: req.oidc.user.nickname,
+        isAdmin: false,
+        favorites: [],
+      };
+
+      const result = await mongodb
+        .getDb()
+        .db('rexcube')
+        .collection('users')
+        .insertOne(userAccount);
+      if (result.acknowledged) {
+        res.status(201).json(result)
+      } else {
+        res.status(500).json({ err: 'Could not create a new Todo.' })
+      }
+    }
+  } catch (error) {
+    res.status(500).json(error.message || 'Some error occurred while creating the contact.');
+  }
+  // res.status(200).json("Create User");
 };
 
 const updateUser = async (req, res) => {
@@ -30,9 +62,9 @@ const updateUser = async (req, res) => {
   // #swagger.description = "Update user by id"
 
   // #swagger.parameters['userId'] = {
-    // "in": "path",
-    // "required": true,
-    // "type": "string"
+  // "in": "path",
+  // "required": true,
+  // "type": "string"
   // },
   // {
   //   "name": "body",
@@ -55,9 +87,9 @@ const updateUser = async (req, res) => {
   //     }
   //   }
   // }
-  
 
-  
+
+
   try {
     const userId = new ObjectId(req.params.requestId);
     const result = new mongodb.getDb().db('rexcube').collection('users').replaceOne({ _id: userId }, req.body);
