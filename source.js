@@ -40,7 +40,7 @@ app.get('/', (req, res) => {
 
 app.get('/profile', requiresAuth(), (req, res) => {
   res.send(JSON.stringify(req.oidc.user));
-  userController.createUser();
+  userController.createUser(req, res);
 });
 
 
