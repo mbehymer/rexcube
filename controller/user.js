@@ -24,13 +24,13 @@ const createUser = async (req, res) => {
   try {
     const userEmail = req.oidc.user.email;
 
-    const isUserAdded = await mongodb
+    var myCount = await mongodb
       .getDb()
       .db('rexcube')
-      .collection('users')
-      .find({ email: userEmail }).count();
+      .collection('users').countDocuments({ email: userEmail });
+    // console.log(myCount);
 
-    if (isUserAdded === 0) {
+    if (myCount === 0) {
       let userAccount = {
         email: req.oidc.user.email,
         userName: req.oidc.user.nickname,
@@ -44,15 +44,14 @@ const createUser = async (req, res) => {
         .collection('users')
         .insertOne(userAccount);
       if (result.acknowledged) {
-        res.status(201).json(result)
+        res.status(201).json(result).send()
       } else {
         res.status(500).json({ err: 'Could not create a new Todo.' })
       }
     }
   } catch (error) {
-    res.status(500).json(error.message || 'Some error occurred while creating the contact.');
+    res.status(500).send(error.message || 'Some error occurred while creating the contact.');
   }
-  // res.status(200).json("Create User");
 };
 
 const updateUser = async (req, res) => {
