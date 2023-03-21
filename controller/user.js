@@ -44,13 +44,13 @@ const createUser = async (req, res) => {
         .collection('users')
         .insertOne(userAccount);
       if (result.acknowledged) {
-        res.status(201).json(result)
+        res.status(201).json(result).send()
       } else {
         res.status(500).json({ err: 'Could not create a new Todo.' })
       }
     }
-  } catch (err) {
-    res.status(500).write(err.message || 'Some error occurred while creating the contact.');
+  } catch (error) {
+    res.status(500).send(error.message || 'Some error occurred while creating the contact.');
   }
 };
 
