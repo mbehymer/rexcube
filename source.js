@@ -2,6 +2,7 @@ const express = require("express");
 const mongodb = require("./db/connect");
 const bodyParser = require("body-parser");
 const { auth, requiresAuth } = require('express-openid-connect');
+const userController = require('./controller/user');
 
 
 const cors = require("cors");
@@ -28,14 +29,18 @@ const config = {
 // auth router attaches /login, /logout, and /callback routes to the baseURL
 app.use(auth(config));
 
+// app.get('/login', (req, res) => ) {
+
+// }
+
 // req.isAuthenticated is provided from the auth router
 app.get('/', (req, res) => {
   res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
-  createUser();
 });
 
 app.get('/profile', requiresAuth(), (req, res) => {
   res.send(JSON.stringify(req.oidc.user));
+  userController.createUser();
 });
 
 
