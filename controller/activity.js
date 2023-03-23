@@ -1,11 +1,17 @@
 const ObjectId = require('mongodb').ObjectId;
-// const valid = require("../helper/index.js");
+const valid = require("../helper/index.js");
 // const client = require('mongodb').ObjectId;
 
 const mongodb = require('../db/connect.js');
 
 const getActivity = async (req, res, next) => {
-
+    /* 
+    #swagger.tags = [
+      {
+        name: 'Activity'
+      }
+    ]
+    */
   // NOT WORKING
   try {
     const result = await mongodb.getDb()
@@ -22,7 +28,13 @@ const getActivity = async (req, res, next) => {
 };
 
 const getSingleActivityById = async (req, res, next) => {
-
+    /* 
+    #swagger.tags = [
+      {
+        name: 'Activity'
+      }
+    ]
+    */
   // WORKING!!!
 
   try {
@@ -44,6 +56,14 @@ const getSingleActivityById = async (req, res, next) => {
 
 
 const getSingleActivityByCategory = async (req, res, next) => {
+    /* 
+    #swagger.tags = [
+      {
+        name: 'Activity'
+      }
+    ]
+    */
+    
   // WORKING!!!
 
   try {
@@ -64,43 +84,35 @@ const getSingleActivityByCategory = async (req, res, next) => {
 };
 
 const createActivity = async (req, res, next) => {
-<<<<<<< HEAD
-    
-    try {
-        console.log(req);
-        console.log("=============================================");
-        console.log(req.body);
-        let activity = {
-            act_id: new ObjectId(),
-            location: req.body.location,
-            title: req.body.title,
-            info: req.body.info,
-            category: req.body.category,
-            website: req.body.website,
-        };
-        // console.log(todo);
-        // console.log()
-
-        // const response = valid.validateContact(todo);
-        // if (response.error) {
-        //     res.status(422).json(response.error.message);
-        //     return;
-        // }
-
-        const result = await mongodb
-            .getDb()
-            .db('rexcube')
-            .collection('activity')
-            .insertOne(activity);
-        if (result.acknowledged) {
-                res.status(201).json(result)
-        } else {
-            res.status(500).json({err: 'Could not create a new Todo.'})
-        }
-    } catch (err) {
-        console.log("insertTodo: ",err)
-=======
-
+  // .description = 'This route creates the activity, this will only be accessed by admins and even then the admin will not input the information, but rather pass the request activity file.'
+  /* 
+    #swagger.tags = [
+      {
+        name: 'Activity'
+      }
+      ]
+    #swagger.description = 'This route creates the activity, this will only be accessed by admins and even then the admin will not input the information, but rather pass the request activity file.'
+    #swagger.parameters = [
+      {
+        'name': 'body',
+        'in': 'body',
+        'description': 'Some description about the activity',
+        'schema': {
+              'location': "North",
+              'title': "Name of Activity",
+              'info': 'Time, cost, etc., about the activity.',
+              'category': [
+                  1,
+                  5,
+                  7,
+              ]
+            ,
+              'website': 'https://somewebsite.com',
+          }
+      }
+    ]
+        
+} */
   try {
 
     let activity = {
@@ -114,11 +126,11 @@ const createActivity = async (req, res, next) => {
     // console.log(todo);
     // console.log()
 
-    // const response = valid.validateContact(todo);
-    // if (response.error) {
-    //     res.status(422).json(response.error.message);
-    //     return;
-    // }
+    const response = valid.validateContact(todo);
+    if (response.error) {
+        res.status(422).json(response.error.message);
+        return;
+    }
 
     const result = await mongodb
       .getDb()
@@ -129,7 +141,6 @@ const createActivity = async (req, res, next) => {
       res.status(201).json(result)
     } else {
       res.status(500).json({ err: 'Could not create a new Todo.' })
->>>>>>> a7e4beea4ca176712bc5632cb4d36ddf05a40643
     }
   } catch (err) {
     console.log("insertTodo: ", err)
@@ -138,7 +149,13 @@ const createActivity = async (req, res, next) => {
 
 
 const deleteActivity = async (req, res, next) => {
-
+    /* 
+    #swagger.tags = [
+      {
+        name: 'Activity'
+      }
+    ]
+    */
   try {
     const userIdString = new ObjectId(req.params.id);
 

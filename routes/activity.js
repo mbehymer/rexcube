@@ -4,6 +4,19 @@ const router = express.Router();
 
 const activityFunc = require('../controller/activity');
 
+
+
+/**
+//  * 
+* get:
+ * tags['Activity']
+ *  description: Get all of the activities
+ *  responses:
+ *      '200':
+ *          description: A successful response
+ *      '500':
+ *          description: Internal Server Error
+ */
 router.get('/', activityFunc.getActivity);
 
 router.get('/:activityId', activityFunc.getSingleActivityById);
