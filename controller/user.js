@@ -3,20 +3,90 @@ const ObjectId = require("mongodb").ObjectId;
 const valid = require("../helper/index");
 
 const getUserLogin = async (req, res) => {
+  // #swagger.tags = ['User']
+
+
   // Will work once Oauth is implemented
   res.send(JSON.stringify(req.oidc.user));
 
 };
 
 const getUserLogout = async (req, res) => {
+  // #swagger.tags = ['User']
+
   res.status(200).json("Logout User");
 };
 
 const createUser = async (req, res) => {
-  res.status(200).json("Create User");
+  // #swagger.tags = ['User']
+  // #swagger.description = "Create a new user"
+
+  try {
+    const userEmail = req.oidc.user.email;
+
+    var myCount = await mongodb
+      .getDb()
+      .db('rexcube')
+      .collection('users').countDocuments({ email: userEmail });
+    // console.log(myCount);
+
+    if (myCount === 0) {
+      let userAccount = {
+        email: req.oidc.user.email,
+        userName: req.oidc.user.nickname,
+        isAdmin: false,
+        favorites: [],
+      };
+
+      const result = await mongodb
+        .getDb()
+        .db('rexcube')
+        .collection('users')
+        .insertOne(userAccount);
+      if (result.acknowledged) {
+        res.status(201).json(result).send()
+      } else {
+        res.status(500).json({ err: 'Could not create a new Todo.' })
+      }
+    }
+  } catch (error) {
+    res.status(500).send(error.message || 'Some error occurred while creating the contact.');
+  }
 };
 
 const updateUser = async (req, res) => {
+  // #swagger.tags = ['User']
+  // #swagger.description = "Update user by id"
+
+  // #swagger.parameters['userId'] = {
+  // "in": "path",
+  // "required": true,
+  // "type": "string"
+  // },
+  // {
+  //   "name": "body",
+  //   "in": "body",
+  //   "schema": {
+  //     "type": "object",
+  //     "properties": {
+  //       "email": {
+  //         "example": "any"
+  //       },
+  //       "username":{
+  //         "example":"any"
+  //       },
+  //       "favorites": {
+  //         "example": [3,1,9]
+  //       },
+  //       "isAdmin":{
+  //         "example":false
+  //       }
+  //     }
+  //   }
+  // }
+
+
+
   try {
     const userId = new ObjectId(req.params.requestId);
     const result = new mongodb.getDb().db('rexcube').collection('users').replaceOne({ _id: userId }, req.body);
@@ -29,6 +99,10 @@ const updateUser = async (req, res) => {
 };
 
 const deleteUser = async (req, res) => {
+  // #swagger.tags = ['User']
+  // #swagger.description = "Delete user by id"
+
+
   try {
     const userIdString = new ObjectId(req.params.id);
 

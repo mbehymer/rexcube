@@ -11,6 +11,28 @@
     "https"
   ],
   "paths": {
+    "/": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/profile": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/activity/": {
       "get": {
         "tags": [
@@ -33,7 +55,11 @@
         "tags": [
           "Activity"
         ],
+<<<<<<< HEAD
         "description": "",
+=======
+        "description": "Get a specific activity by its id",
+>>>>>>> 20b529e626d0f383fb7287a69d7f58a064f341c6
         "produces": [
           "application/json"
         ],
@@ -60,7 +86,11 @@
         "tags": [
           "Activity"
         ],
+<<<<<<< HEAD
         "description": "This route creates the activity, this will only be accessed by admins and even then the admin will not input the information, but rather pass the request activity file.",
+=======
+        "description": "Create a new activity(admin only)",
+>>>>>>> 20b529e626d0f383fb7287a69d7f58a064f341c6
         "parameters": [
           {
             "name": "body",
@@ -82,6 +112,7 @@
                   "example": "Time, cost, etc., about the activity."
                 },
                 "category": {
+<<<<<<< HEAD
                   "type": "array",
                   "example": [
                     1,
@@ -91,6 +122,9 @@
                   "items": {
                     "type": "number"
                   }
+=======
+                  "example": "any"
+>>>>>>> 20b529e626d0f383fb7287a69d7f58a064f341c6
                 },
                 "website": {
                   "type": "string",
@@ -103,12 +137,16 @@
         "responses": {}
       }
     },
-    "/activity/{categoryId}": {
+    "/activity/findcategory/{categoryId}": {
       "get": {
         "tags": [
           "Activity"
         ],
+<<<<<<< HEAD
         "description": "",
+=======
+        "description": "Get activity by category",
+>>>>>>> 20b529e626d0f383fb7287a69d7f58a064f341c6
         "produces": [
           "application/json"
         ],
@@ -156,7 +194,14 @@
     },
     "/requests/": {
       "get": {
+<<<<<<< HEAD
         "description": "",
+=======
+        "tags": [
+          "Activity Requests"
+        ],
+        "description": "Get all the activity request",
+>>>>>>> 20b529e626d0f383fb7287a69d7f58a064f341c6
         "parameters": [],
         "responses": {
           "200": {
@@ -174,6 +219,13 @@
         "produces": [
           "application/json"
         ],
+<<<<<<< HEAD
+=======
+        "description": "Get request by id",
+        "produces": [
+          "application/json"
+        ],
+>>>>>>> 20b529e626d0f383fb7287a69d7f58a064f341c6
         "parameters": [
           {
             "name": "userId",
@@ -194,7 +246,14 @@
     },
     "/requests/new": {
       "post": {
+<<<<<<< HEAD
         "description": "",
+=======
+        "tags": [
+          "Activity Requests"
+        ],
+        "description": "Create a new activity request",
+>>>>>>> 20b529e626d0f383fb7287a69d7f58a064f341c6
         "parameters": [
           {
             "name": "body",
@@ -236,7 +295,14 @@
     },
     "/requests/{requestId}": {
       "put": {
+<<<<<<< HEAD
         "description": "",
+=======
+        "tags": [
+          "Activity Requests"
+        ],
+        "description": "Update activity request by id",
+>>>>>>> 20b529e626d0f383fb7287a69d7f58a064f341c6
         "parameters": [
           {
             "name": "requestId",
@@ -246,6 +312,9 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "OK"
+          },
           "204": {
             "description": "No Content"
           },
@@ -255,7 +324,14 @@
         }
       },
       "delete": {
+<<<<<<< HEAD
         "description": "",
+=======
+        "tags": [
+          "Activity Requests"
+        ],
+        "description": "Delete activity request by id",
+>>>>>>> 20b529e626d0f383fb7287a69d7f58a064f341c6
         "parameters": [
           {
             "name": "requestId",
@@ -276,7 +352,14 @@
     },
     "/category/": {
       "post": {
+<<<<<<< HEAD
         "description": "",
+=======
+        "tags": [
+          "Category"
+        ],
+        "description": "Creat category",
+>>>>>>> 20b529e626d0f383fb7287a69d7f58a064f341c6
         "parameters": [],
         "responses": {
           "200": {
@@ -287,7 +370,14 @@
     },
     "/category/{categoryId}": {
       "put": {
+<<<<<<< HEAD
         "description": "",
+=======
+        "tags": [
+          "Category"
+        ],
+        "description": "Update category by id",
+>>>>>>> 20b529e626d0f383fb7287a69d7f58a064f341c6
         "parameters": [
           {
             "name": "categoryId",
@@ -308,6 +398,12 @@
     },
     "/user/": {
       "get": {
+<<<<<<< HEAD
+=======
+        "tags": [
+          "User"
+        ],
+>>>>>>> 20b529e626d0f383fb7287a69d7f58a064f341c6
         "description": "",
         "parameters": [],
         "responses": {
@@ -317,7 +413,14 @@
         }
       },
       "post": {
+<<<<<<< HEAD
         "description": "",
+=======
+        "tags": [
+          "User"
+        ],
+        "description": "Create a new user",
+>>>>>>> 20b529e626d0f383fb7287a69d7f58a064f341c6
         "parameters": [],
         "responses": {
           "200": {
@@ -328,7 +431,14 @@
     },
     "/user/id": {
       "delete": {
+<<<<<<< HEAD
         "description": "",
+=======
+        "tags": [
+          "User"
+        ],
+        "description": "Delete user by id",
+>>>>>>> 20b529e626d0f383fb7287a69d7f58a064f341c6
         "parameters": [],
         "responses": {
           "200": {
@@ -342,7 +452,14 @@
     },
     "/user/{userId}": {
       "put": {
+<<<<<<< HEAD
         "description": "",
+=======
+        "tags": [
+          "User"
+        ],
+        "description": "Update user by id",
+>>>>>>> 20b529e626d0f383fb7287a69d7f58a064f341c6
         "parameters": [
           {
             "name": "userId",
@@ -352,6 +469,9 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "OK"
+          },
           "204": {
             "description": "No Content"
           },

@@ -4,6 +4,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "express-openid-connect": "^2.12.1",
     "joi": "^17.8.3",
     "mongodb": "^5.1.0",
     "swagger-autogen": "^2.23.1",
@@ -15,7 +16,7 @@
   "main": "source.js",
   "scripts": {
     "start": "node source.js",
-    "swagger": "node ./routes/swagger.js",
+    "swagger": "node ./swagger.js",
     "dev-start": "nodemon server.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -5,16 +5,13 @@ const valid = require("../helper/index.js");
 const mongodb = require('../db/connect.js');
 
 const getActivity = async (req, res, next) => {
-    /* 
-    #swagger.tags = [
-      {
-        name: 'Activity'
-      }
-    ]
-    */
-  // NOT WORKING
+    // #swagger.tags = ['Activity']
+      // #swagger.description = "Get all the activities"
+
+
+
   try {
-    const result = await mongodb.getDb()
+    const result = await mongodb
       .getDb()
       .db('rexcube')
       .collection('activity').find();
@@ -28,14 +25,8 @@ const getActivity = async (req, res, next) => {
 };
 
 const getSingleActivityById = async (req, res, next) => {
-    /* 
-    #swagger.tags = [
-      {
-        name: 'Activity'
-      }
-    ]
-    */
-  // WORKING!!!
+  // #swagger.tags = ['Activity']
+  // #swagger.description = "Get a specific activity by its id"
 
   try {
     const activityId = new ObjectId(req.params.activityId);
@@ -56,23 +47,24 @@ const getSingleActivityById = async (req, res, next) => {
 
 
 const getSingleActivityByCategory = async (req, res, next) => {
-    /* 
-    #swagger.tags = [
-      {
-        name: 'Activity'
-      }
-    ]
-    */
-    
+
+  // #swagger.tags = ['Activity']
+  // #swagger.description = "Get activity by category"
+
   // WORKING!!!
 
+
   try {
-    const categoryId = new ObjectId(req.params.categoryId);
+    const categoryId = req.params.categoryId;
+    const categoryIdInt = parseInt(categoryId)
+
     const result = await mongodb
       .getDb()
       .db('rexcube')
       .collection('activity')
-      .find({ categoryId: categoryId });
+      .find({ category: { $in: [categoryIdInt] } });
+
+
     result.toArray().then((lists) => {
       res.setHeader('Content-Type', 'application/json');
       res.status(200).json(lists);
@@ -84,35 +76,9 @@ const getSingleActivityByCategory = async (req, res, next) => {
 };
 
 const createActivity = async (req, res, next) => {
-  // .description = 'This route creates the activity, this will only be accessed by admins and even then the admin will not input the information, but rather pass the request activity file.'
-  /* 
-    #swagger.tags = [
-      {
-        name: 'Activity'
-      }
-      ]
-    #swagger.description = 'This route creates the activity, this will only be accessed by admins and even then the admin will not input the information, but rather pass the request activity file.'
-    #swagger.parameters = [
-      {
-        'name': 'body',
-        'in': 'body',
-        'description': 'Some description about the activity',
-        'schema': {
-              'location': "North",
-              'title': "Name of Activity",
-              'info': 'Time, cost, etc., about the activity.',
-              'category': [
-                  1,
-                  5,
-                  7,
-              ]
-            ,
-              'website': 'https://somewebsite.com',
-          }
-      }
-    ]
-        
-} */
+    // #swagger.tags = ['Activity']
+    // #swagger.description = "Create a new activity(admin only)"
+ 
   try {
 
     let activity = {
@@ -149,13 +115,10 @@ const createActivity = async (req, res, next) => {
 
 
 const deleteActivity = async (req, res, next) => {
-    /* 
-    #swagger.tags = [
-      {
-        name: 'Activity'
-      }
-    ]
-    */
+  // #swagger.tags = ['Activity']
+  // #swagger.description = "Delete activity by id"
+
+
   try {
     const userIdString = new ObjectId(req.params.id);
 
