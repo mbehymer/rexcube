@@ -5,6 +5,8 @@ const valid = require("../helper/index");
 const getUserLogin = async (req, res) => {
   // #swagger.tags = ['User']
 
+  //Not Working
+
 
   // Will work once Oauth is implemented
   res.send(JSON.stringify(req.oidc.user));
@@ -20,6 +22,28 @@ const getUserLogout = async (req, res) => {
 const createUser = async (req, res) => {
   // #swagger.tags = ['User']
   // #swagger.description = "Create a new user"
+
+    //#swagger.parameters = {
+    //     "name": "body",
+    //     "in": "body",
+    //     "schema": {
+    //       "type": "object",
+    //       "properties": {
+    //         "email": {
+    //           "example": "myemail@email.com"
+    //         },
+    //         "userName": {
+    //           "example": "any"
+    //         },
+    //          "isAdmin": {
+    //           "example": false
+    //         },
+    //         "favorites": {
+    //           "example": [8,4,12]
+    //         }
+    //       }
+    //     }
+    //   }
 
   try {
     const userEmail = req.oidc.user.email;
@@ -84,8 +108,6 @@ const updateUser = async (req, res) => {
   //     }
   //   }
   // }
-
-
 
   try {
     const userId = new ObjectId(req.params.requestId);

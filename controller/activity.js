@@ -78,6 +78,37 @@ const getSingleActivityByCategory = async (req, res, next) => {
 const createActivity = async (req, res, next) => {
     // #swagger.tags = ['Activity']
     // #swagger.description = "Create a new activity(admin only)"
+
+    //#swagger.parameters = {
+    //     "name": "body",
+    //     "in": "body",
+    //     "schema": {
+    //       "type": "object",
+    //       "properties": {
+    //         "title": {
+    //           "example": "any"
+    //         },
+    //         "info": {
+    //           "example": "any"
+    //         },
+    //          "location": {
+    //           "example": "any"
+    //         },
+    //         "category": {
+    //           "example": [1,9]
+    //         },
+    //         "website": {
+    //           "example": "any"
+    //         },
+    //         "address": {
+    //            "example":"any"
+    //          },
+    //         "image": {
+    //            "example": "any"
+    //           }
+    //       }
+    //     }
+    //   }
  
   try {
 
