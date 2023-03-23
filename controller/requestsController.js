@@ -6,7 +6,6 @@ const getAllRequests = async (req, res) => {
     // #swagger.tags = ['Activity Requests']
     // #swagger.description = "Get all the activity request"
 
-    // Not working
 
     try {
         const result = await mongodb
@@ -25,7 +24,6 @@ const getRequestByUserId = async (req, res) => {
     // #swagger.tags = ['Activity Requests']
     // #swagger.description = "Get request by id"
 
-    // Not working
 
 
     try {
@@ -48,6 +46,41 @@ const createNewRequest = async (req, res) => {
     // #swagger.tags = ['Activity Requests']
     // #swagger.description = "Create a new activity request"
 
+    //#swagger.parameters = {
+    //     "name": "body",
+    //     "in": "body",
+    //     "schema": {
+    //       "type": "object",
+    //       "properties": {
+    //         "userId": {
+    //           "example": "any"
+    //         },
+    //         "title": {
+    //           "example": "any"
+    //         },
+    //         "info": {
+    //           "example": "any"
+    //         },
+    //          "location": {
+    //           "example": "any"
+    //         },
+    //         "category": {
+    //           "example": [1,9]
+    //         },
+    //         "website": {
+    //           "example": "any"
+    //         },
+    //         "address": {
+    //            "example":"any"
+    //          },
+    //         "image": {
+    //            "example": "any"
+    //           }
+    //       }
+    //     }
+    //   }
+
+
     // {
     //     "userId": "1",
     //     "location": "North West",
@@ -56,6 +89,7 @@ const createNewRequest = async (req, res) => {
     //     "category": ["Indoors", "Active"],
     //     "webLink": "throckgymrexburg.com"
     //   }
+   
 
     try {
 
@@ -102,21 +136,27 @@ const updateRequest = async (req, res) => {
         //         "userId": {
         //           "example": "any"
         //         },
-        //         "location": {
-        //           "example": "any"
-        //         },
         //         "title": {
         //           "example": "any"
         //         },
         //         "info": {
         //           "example": "any"
         //         },
-        //         "category": {
+        //          "location": {
         //           "example": "any"
         //         },
-        //         "webLink": {
+        //         "category": {
+        //           "example": [1,9]
+        //         },
+        //         "website": {
         //           "example": "any"
-        //         }
+        //         },
+        //         "address": {
+        //            "example":"any"
+        //          },
+        //         "image": {
+        //            "example": "any"
+       //           }
         //       }
         //     }
         //   }
