@@ -94,7 +94,7 @@ const createNewRequest = async (req, res) => {
     //     "title": "Rock Climbing",
     //     "info": "Student night Thursday $11, Rock Gym",
     //     "category": ["Indoors", "Active"],
-    //     "webLink": "throckgymrexburg.com"
+    //     "website": "throckgymrexburg.com"
     //   }
    
 
