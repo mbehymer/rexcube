@@ -17,7 +17,13 @@ function validateActivity(activity) {
     location: Joi.string().required(),
     title: Joi.string().min(1).max(25).required(),
     info: Joi.string().required(),
-    category: Joi.array().items(Joi.string()), //Make sure each Id is a string
+    category: Joi.array().items(Joi.number()), 
+    website: Joi.string().required(),
+    address: Joi.string().required(),
+    image: Joi.object({
+      name: Joi.string().required(), 
+      b64: Joi.string().required()
+    }),
   }).options({ abortEarly: false });
 
   return JoiSchema.validate(activity);
@@ -26,14 +32,17 @@ function validateActivity(activity) {
 function validateRequest(request) {
   const JoiSchema = Joi.object({
     // isPublic: Joi.bool().required(),
-    userId: Joi.number().required(),
+    userId: Joi.string().required(),
     location: Joi.string().required(),
     title: Joi.string().required(),
     info: Joi.string().required(),
     category: Joi.array().items(Joi.string()),
     website: Joi.string().required(),
     address: Joi.string().required(),
-    image: Joi.string(),
+    image: Joi.object({
+      name: Joi.string().required(), 
+      b64: Joi.string().required()
+    }),
   }).options({ abortEarly: false });
 
   return JoiSchema.validate(request);
