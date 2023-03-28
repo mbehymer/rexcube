@@ -46,6 +46,12 @@ const createUser = async (req, res) => {
     //   }
 
   try {
+    const response = valid.validateUser(req.body);
+    if(response.error){
+      res.status(422).json(response.error.message);
+      return;
+    }
+
     const userEmail = req.oidc.user.email;
 
     var myCount = await mongodb
@@ -110,6 +116,11 @@ const updateUser = async (req, res) => {
   // }
 
   try {
+    const response = valid.validateUser(req.body);
+    if(response.error){
+      res.status(422).json(response.error.message);
+      return;
+    }
     const userId = new ObjectId(req.params.requestId);
     const result = new mongodb.getDb().db('rexcube').collection('users').replaceOne({ _id: userId }, req.body);
     if (result.modifiedCount != 0) {
