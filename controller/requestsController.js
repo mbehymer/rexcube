@@ -1,6 +1,6 @@
 const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
-// const valid = require('../helper');
+const valid = require('../helper');
 
 const getAllRequests = async (req, res) => {
     // #swagger.tags = ['Activity Requests']
@@ -74,7 +74,14 @@ const createNewRequest = async (req, res) => {
     //            "example":"any"
     //          },
     //         "image": {
-    //            "example": "any"
+    //            "example": {
+    //              "name": {
+    //                  "example": "image name"
+    //                },
+    //              "b64": {
+    //                  "example": "a very long bas 64 string"
+    //                }
+    //              }
     //           }
     //       }
     //     }
@@ -87,11 +94,17 @@ const createNewRequest = async (req, res) => {
     //     "title": "Rock Climbing",
     //     "info": "Student night Thursday $11, Rock Gym",
     //     "category": ["Indoors", "Active"],
-    //     "webLink": "throckgymrexburg.com"
+    //     "website": "throckgymrexburg.com"
     //   }
    
 
     try {
+
+        const response = valid.validateRequest(req.body);
+        if(response.error){
+          res.status(422).json(response.error.message);
+          return;
+        }
 
         let request = {
             activityId: new ObjectId(),
@@ -100,7 +113,9 @@ const createNewRequest = async (req, res) => {
             title: req.body.title,
             info: req.body.info,
             category: req.body.category,
-            webLink: req.body.webLink
+            website: req.body.website,
+            address: req.body.address,
+            image: req.body.image
         };
 
         const result = await mongodb.getDb().db('rexcube').collection('requests')
@@ -155,13 +170,25 @@ const updateRequest = async (req, res) => {
         //            "example":"any"
         //          },
         //         "image": {
-        //            "example": "any"
-       //           }
+        //            "example": {
+        //              "name": {
+        //                  "example": "image name"
+        //                },
+        //              "b64": {
+        //                  "example": "a very long bas 64 string"
+        //                }
+        //              }
+        //            }
         //       }
         //     }
         //   }
 
     try {
+        const response = valid.validateRequest(req.body);
+        if(response.error){
+          res.status(422).json(response.error.message);
+          return;
+        }
         const requestId = new ObjectId(req.params.requestId);
         const result = new mongodb.getDb().db('rexcube').collection('requests').replaceOne({ _id: requestId }, req.body);
         if (result.modifiedCount != 0) {

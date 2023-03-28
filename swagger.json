@@ -24,11 +24,26 @@
     },
     "/profile": {
       "get": {
-        "description": "",
+        "tags": [
+          "User"
+        ],
+        "description": "Create a new user",
         "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -107,14 +122,35 @@
                   "example": "any"
                 },
                 "website": {
-                  "type": "string",
-                  "example": "https://somewebsite.com"
+                  "example": "any"
+                },
+                "address": {
+                  "example": "any"
+                },
+                "image": {
+                  "example": "any"
                 }
               }
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
       }
     },
     "/activity/findcategory/{categoryId}": {
@@ -241,7 +277,13 @@
                 "category": {
                   "example": "any"
                 },
-                "webLink": {
+                "website": {
+                  "example": "any"
+                },
+                "address": {
+                  "example": "any"
+                },
+                "image": {
                   "example": "any"
                 }
               }
@@ -249,8 +291,17 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "OK"
+          },
           "201": {
             "description": "Created"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
           },
           "500": {
             "description": "Internal Server Error"
@@ -278,6 +329,9 @@
           },
           "204": {
             "description": "No Content"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
           },
           "500": {
             "description": "Internal Server Error"
@@ -317,6 +371,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
           }
         }
       }
@@ -339,56 +396,41 @@
           "204": {
             "description": "No Content"
           },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
           "500": {
             "description": "Internal Server Error"
           }
         }
       }
     },
-    "/user/": {
+    "/user/{userId}": {
       "get": {
         "tags": [
           "User"
         ],
         "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "User"
+        "produces": [
+          "application/json"
         ],
-        "description": "Create a new user",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
           }
-        }
-      }
-    },
-    "/user/id": {
-      "delete": {
-        "tags": [
-          "User"
         ],
-        "description": "Delete user by id",
-        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
           },
-          "204": {
-            "description": "No Content"
+          "500": {
+            "description": "Internal Server Error"
           }
         }
-      }
-    },
-    "/user/{userId}": {
+      },
       "put": {
         "tags": [
           "User"
@@ -409,8 +451,61 @@
           "204": {
             "description": "No Content"
           },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
           "500": {
             "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/user/": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "Create a new user",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/user/{id}": {
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "description": "Delete user by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No Content"
           }
         }
       }

@@ -5,8 +5,12 @@ const valid = require("../helper/index");
 const createCategory = async (req, res) => {
     // #swagger.tags = ['Category']
     // #swagger.description = "Creat category"
-
-  res.status(200).json("Create User");
+    const response = valid.validateCategory(req.body);
+    if(response.error){
+      res.status(422).json(response.error.message);
+      return;
+    }
+  res.status(200).json("Created category");
 };
 
 const updateCategory = async (req, res) => {
@@ -35,6 +39,11 @@ const updateCategory = async (req, res) => {
         //   }
 
   try{
+    const response = valid.validateCategory(req.body);
+        if(response.error){
+          res.status(422).json(response.error.message);
+          return;
+        }
     const categoryId = new ObjectId(req.params.categoryId);
     const result = new mongodb.getDb().db('rexcube').collection('category').replaceOne({_id:categoryId}, req.body);
     if (result.modifiedCount != 0) {

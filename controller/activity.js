@@ -104,13 +104,25 @@ const createActivity = async (req, res, next) => {
     //            "example":"any"
     //          },
     //         "image": {
-    //            "example": "any"
+    //            "example": {
+    //              "name": {
+    //                  "example": "image name"
+    //                },
+    //              "b64": {
+    //                  "example": "a very long bas 64 string"
+    //                }
+    //              }
     //           }
     //       }
     //     }
     //   }
  
   try {
+    const response = valid.validateRequest(req.body);
+        if(response.error){
+          res.status(422).json(response.error.message);
+          return;
+        }
 
     let activity = {
       act_id: new ObjectId(),
@@ -119,6 +131,8 @@ const createActivity = async (req, res, next) => {
       info: req.body.info,
       category: req.body.category,
       website: req.body.website,
+      addres: req.body.address,
+      image: req.body.image
     };
     // console.log(todo);
     // console.log()

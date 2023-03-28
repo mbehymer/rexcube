@@ -17,9 +17,13 @@ function validateActivity(activity) {
     location: Joi.string().required(),
     title: Joi.string().min(1).max(25).required(),
     info: Joi.string().required(),
+    category: Joi.array().items(Joi.number()), 
+    website: Joi.string().required(),
     address: Joi.string().required(),
-    image: Joi.string().optional(),
-    category: Joi.array().items(Joi.string()), //Make sure each Id is a string
+    image: Joi.object({
+      name: Joi.string().required(), 
+      b64: Joi.string().required()
+    }),
   }).options({ abortEarly: false });
 
   return JoiSchema.validate(activity);
@@ -27,13 +31,18 @@ function validateActivity(activity) {
 
 function validateRequest(request) {
   const JoiSchema = Joi.object({
-    isPublic: Joi.bool().required(),
-    userId: Joi.number().required(),
+    // isPublic: Joi.bool().required(),
+    userId: Joi.string().required(),
     location: Joi.string().required(),
     title: Joi.string().required(),
     info: Joi.string().required(),
-    Category: Joi.string().require(),
-    webLink: Joi.string().required(),
+    category: Joi.array().items(Joi.string()),
+    website: Joi.string().required(),
+    address: Joi.string().required(),
+    image: Joi.object({
+      name: Joi.string().required(), 
+      b64: Joi.string().required()
+    }),
   }).options({ abortEarly: false });
 
   return JoiSchema.validate(request);
@@ -41,8 +50,8 @@ function validateRequest(request) {
 
 function validateCategory(category) {
   const JoiSchema = Joi.object({
-    // userId: Joi.number().required(),
-    categoryName: Joi.string().required(),
+    category_name: Joi.string().required(),
+    category_id: Joi.number().required(),
   }).options({ abortEarly: false });
 
   return JoiSchema.validate(category);
