@@ -5,10 +5,10 @@
     "description": "An API for RexCube App",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "rexcube.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/": {
@@ -38,6 +38,9 @@
           },
           "204": {
             "description": "No Content"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
           },
           "500": {
             "description": "Internal Server Error"
@@ -116,6 +119,12 @@
                 },
                 "website": {
                   "example": "any"
+                },
+                "address": {
+                  "example": "any"
+                },
+                "image": {
+                  "example": "any"
                 }
               }
             }
@@ -130,6 +139,9 @@
           },
           "204": {
             "description": "No Content"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
           },
           "500": {
             "description": "Internal Server Error"
@@ -260,7 +272,13 @@
                 "category": {
                   "example": "any"
                 },
-                "webLink": {
+                "website": {
+                  "example": "any"
+                },
+                "address": {
+                  "example": "any"
+                },
+                "image": {
                   "example": "any"
                 }
               }
@@ -276,6 +294,9 @@
           },
           "204": {
             "description": "No Content"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
           },
           "500": {
             "description": "Internal Server Error"
@@ -303,6 +324,9 @@
           },
           "204": {
             "description": "No Content"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
           },
           "500": {
             "description": "Internal Server Error"
@@ -342,6 +366,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
           }
         }
       }
@@ -363,6 +390,9 @@
         "responses": {
           "204": {
             "description": "No Content"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
           },
           "500": {
             "description": "Internal Server Error"
@@ -416,6 +446,9 @@
           "204": {
             "description": "No Content"
           },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -438,6 +471,9 @@
           },
           "204": {
             "description": "No Content"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
           },
           "500": {
             "description": "Internal Server Error"
