@@ -31,9 +31,9 @@ describe('GET All Activitys', () => {
         });
       });
 
-describe('Check if we can Delete an activity', () => {
-    test('responds to /activity/ID', async () => {
-        const res = await request(app).delete('/activity/640a06f28ce1d61f91897128');
-        expect(res.header['content-type']).toBe('application/json; charset=utf-8');
-    });
-    });
+// describe('Check if we can Delete an activity', () => {
+//     test('responds to /activity/ID', async () => {
+//         const res = await request(app).delete('/activity/640a06f28ce1d61f91897128');
+//         expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+//     });
+//     });

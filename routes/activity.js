@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-// const { requiresAuth } = require('express-openid-connect');
+const { requiresAuth } = require('express-openid-connect');
 
 const activityFunc = require('../controller/activity');
 
@@ -30,6 +30,6 @@ router.post('/new', activityFunc.createActivity);
 
 router.get('/findcategory/:categoryId', activityFunc.getSingleActivityByCategory);
 
-router.delete('/:id', activityFunc.deleteActivity);
+router.delete('/:id', requiresAuth() ,activityFunc.deleteActivity);
 
 module.exports = router;
