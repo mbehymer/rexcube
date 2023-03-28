@@ -74,7 +74,14 @@ const createNewRequest = async (req, res) => {
     //            "example":"any"
     //          },
     //         "image": {
-    //            "example": "any"
+    //            "example": {
+    //              "name": {
+    //                  "example": "image name"
+    //                },
+    //              "b64": {
+    //                  "example": "a very long bas 64 string"
+    //                }
+    //              }
     //           }
     //       }
     //     }
@@ -163,8 +170,15 @@ const updateRequest = async (req, res) => {
         //            "example":"any"
         //          },
         //         "image": {
-        //            "example": "any"
-       //           }
+        //            "example": {
+        //              "name": {
+        //                  "example": "image name"
+        //                },
+        //              "b64": {
+        //                  "example": "a very long bas 64 string"
+        //                }
+        //              }
+        //            }
         //       }
         //     }
         //   }

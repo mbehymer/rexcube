@@ -104,7 +104,14 @@ const createActivity = async (req, res, next) => {
     //            "example":"any"
     //          },
     //         "image": {
-    //            "example": "any"
+    //            "example": {
+    //              "name": {
+    //                  "example": "image name"
+    //                },
+    //              "b64": {
+    //                  "example": "a very long bas 64 string"
+    //                }
+    //              }
     //           }
     //       }
     //     }
