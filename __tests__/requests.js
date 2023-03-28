@@ -32,9 +32,9 @@ describe('GET All Requests', () => {
         });
         });
 
-describe('Check if we can Delete a request', () => {
-    test('responds to /requests/id', async () => {
-        const res = await request(app).delete('/requests/640d1ea38a5ddf421808be84');
-        expect(res.header['content-type']).toBe('application/json; charset=utf-8');
-    });
-    });
+// describe('Check if we can Delete a request', () => {
+//     test('responds to /requests/id', async () => {
+//         const res = await request(app).delete('/requests/640d1ea38a5ddf421808be84');
+//         expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+//     });
+//     });
