@@ -25,13 +25,15 @@ function validateActivity(activity) {
 
 function validateRequest(request) {
   const JoiSchema = Joi.object({
-    isPublic: Joi.bool().required(),
+    // isPublic: Joi.bool().required(),
     userId: Joi.number().required(),
     location: Joi.string().required(),
     title: Joi.string().required(),
     info: Joi.string().required(),
-    Category: Joi.string().require(),
-    webLink: Joi.string().required(),
+    category: Joi.array().items(Joi.string()),
+    website: Joi.string().required(),
+    address: Joi.string().required(),
+    image: Joi.string(),
   }).options({ abortEarly: false });
 
   return JoiSchema.validate(request);
@@ -39,8 +41,8 @@ function validateRequest(request) {
 
 function validateCategory(category) {
   const JoiSchema = Joi.object({
-    // userId: Joi.number().required(),
-    categoryName: Joi.string().required(),
+    category_name: Joi.string().required(),
+    category_id: Joi.number().required(),
   }).options({ abortEarly: false });
 
   return JoiSchema.validate(category);
