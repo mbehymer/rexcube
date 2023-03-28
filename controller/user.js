@@ -2,26 +2,60 @@ const mongodb = require("../db/connect");
 const ObjectId = require("mongodb").ObjectId;
 const valid = require("../helper/index");
 
-const getUserLogin = async (req, res) => {
+const getUserById = async (req, res) => {
   // #swagger.tags = ['User']
 
+  // res.send(JSON.stringify(req.oidc.user));
+  try {
+    const userId = new ObjectId(req.params.userId);
+    const result = await mongodb
+      .getDb()
+      .db('rexcube')
+      .collection('users')
+      .find({ _id: userId });
+    result.toArray().then((lists) => {
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json(lists);
+    });
+  } catch (error) {
+    res.status(500).json(error.message || 'Some error occurred while getting the user.');
+  }
 
-  // Will work once Oauth is implemented
-  res.send(JSON.stringify(req.oidc.user));
-
-};
-
-const getUserLogout = async (req, res) => {
-  // #swagger.tags = ['User']
-
-  res.status(200).json("Logout User");
 };
 
 const createUser = async (req, res) => {
   // #swagger.tags = ['User']
   // #swagger.description = "Create a new user"
 
+  //#swagger.parameters = {
+  //     "name": "body",
+  //     "in": "body",
+  //     "schema": {
+  //       "type": "object",
+  //       "properties": {
+  //         "email": {
+  //           "example": "myemail@email.com"
+  //         },
+  //         "userName": {
+  //           "example": "any"
+  //         },
+  //          "isAdmin": {
+  //           "example": false
+  //         },
+  //         "favorites": {
+  //           "example": [8,4,12]
+  //         }
+  //       }
+  //     }
+  //   }
+
   try {
+    const response = valid.validateUser(req.body);
+    if(response.error){
+      res.status(422).json(response.error.message);
+      return;
+    }
+
     const userEmail = req.oidc.user.email;
 
     var myCount = await mongodb
@@ -85,9 +119,12 @@ const updateUser = async (req, res) => {
   //   }
   // }
 
-
-
   try {
+    const response = valid.validateUser(req.body);
+    if(response.error){
+      res.status(422).json(response.error.message);
+      return;
+    }
     const userId = new ObjectId(req.params.requestId);
     const result = new mongodb.getDb().db('rexcube').collection('users').replaceOne({ _id: userId }, req.body);
     if (result.modifiedCount != 0) {
@@ -125,8 +162,7 @@ const deleteUser = async (req, res) => {
 };
 
 module.exports = {
-  getUserLogin,
-  getUserLogout,
+  getUserById,
   createUser,
   updateUser,
   deleteUser

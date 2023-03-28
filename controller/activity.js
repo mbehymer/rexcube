@@ -1,5 +1,5 @@
 const ObjectId = require('mongodb').ObjectId;
-// const valid = require("../helper/index.js");
+const valid = require("../helper/index.js");
 // const client = require('mongodb').ObjectId;
 
 const mongodb = require('../db/connect.js');
@@ -78,8 +78,51 @@ const getSingleActivityByCategory = async (req, res, next) => {
 const createActivity = async (req, res, next) => {
     // #swagger.tags = ['Activity']
     // #swagger.description = "Create a new activity(admin only)"
+
+    //#swagger.parameters = {
+    //     "name": "body",
+    //     "in": "body",
+    //     "schema": {
+    //       "type": "object",
+    //       "properties": {
+    //         "title": {
+    //           "example": "any"
+    //         },
+    //         "info": {
+    //           "example": "any"
+    //         },
+    //          "location": {
+    //           "example": "any"
+    //         },
+    //         "category": {
+    //           "example": [1,9]
+    //         },
+    //         "website": {
+    //           "example": "any"
+    //         },
+    //         "address": {
+    //            "example":"any"
+    //          },
+    //         "image": {
+    //            "example": {
+    //              "name": {
+    //                  "example": "image name"
+    //                },
+    //              "b64": {
+    //                  "example": "a very long bas 64 string"
+    //                }
+    //              }
+    //           }
+    //       }
+    //     }
+    //   }
  
   try {
+    const response = valid.validateRequest(req.body);
+        if(response.error){
+          res.status(422).json(response.error.message);
+          return;
+        }
 
     let activity = {
       act_id: new ObjectId(),
@@ -88,6 +131,8 @@ const createActivity = async (req, res, next) => {
       info: req.body.info,
       category: req.body.category,
       website: req.body.website,
+      addres: req.body.address,
+      image: req.body.image
     };
     // console.log(todo);
     // console.log()
