@@ -6,12 +6,10 @@ const doc = {
     title: 'RexCube',
     description: 'An API for RexCube App',
   },
-  // host: 'rexcube.onrender.com',
-  // schemes: ['https'],
-  host: 'localhost:8080',
-  schemes: ['http'],
-
-
+  host: 'rexcube.onrender.com',
+  schemes: ['https'],
+  // host: 'localhost:8080',
+  // schemes: ['http'],
 };
 
 const outputFile = './swagger.json';
