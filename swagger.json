@@ -8,11 +8,15 @@
   "host": "rexcube.onrender.com",
   "basePath": "/",
   "schemes": [
-    "https"
+    "https",
+    "http"
   ],
   "paths": {
     "/": {
       "get": {
+        "tags": [
+          "User Authentication Status"
+        ],
         "description": "",
         "parameters": [],
         "responses": {
@@ -35,9 +39,6 @@
           },
           "201": {
             "description": "Created"
-          },
-          "204": {
-            "description": "No Content"
           },
           "422": {
             "description": "Unprocessable Entity"
@@ -131,14 +132,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
           "201": {
             "description": "Created"
-          },
-          "204": {
-            "description": "No Content"
           },
           "422": {
             "description": "Unprocessable Entity"
@@ -286,14 +281,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
           "201": {
             "description": "Created"
-          },
-          "204": {
-            "description": "No Content"
           },
           "422": {
             "description": "Unprocessable Entity"
@@ -316,12 +305,42 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "example": "any"
+                },
+                "location": {
+                  "example": "any"
+                },
+                "title": {
+                  "example": "any"
+                },
+                "info": {
+                  "example": "any"
+                },
+                "category": {
+                  "example": "any"
+                },
+                "website": {
+                  "example": "any"
+                },
+                "address": {
+                  "example": "any"
+                },
+                "image": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
           "204": {
             "description": "No Content"
           },
@@ -385,6 +404,21 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "category_name": {
+                  "example": "any"
+                },
+                "category_id": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -437,12 +471,27 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "example": "any"
+                },
+                "nickname": {
+                  "example": "any"
+                },
+                "favorites": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
           "204": {
             "description": "No Content"
           },
@@ -463,14 +512,8 @@
         "description": "Create a new user",
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
           "201": {
             "description": "Created"
-          },
-          "204": {
-            "description": "No Content"
           },
           "422": {
             "description": "Unprocessable Entity"
