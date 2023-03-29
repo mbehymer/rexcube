@@ -5,6 +5,10 @@ const valid = require("../helper/index");
 const createCategory = async (req, res) => {
     // #swagger.tags = ['Category']
     // #swagger.description = "Creat category"
+
+      // swagger.parameters['category_name'] = {"example":"Family Friendly"}
+  // swagger.parameters['category_id'] = {"example": 12}
+  
     const response = valid.validateCategory(req.body);
     if(response.error){
       res.status(422).json(response.error.message);
@@ -17,40 +21,26 @@ const updateCategory = async (req, res) => {
   // #swagger.tags = ['Category']
   // #swagger.description = "Update category by id"
 
-  //#swagger.parameters['categoryId'] = {
-        //     "in": "path",
-        //     "required": true,
-        //     "type": "string"
-        //   },
-        //   {
-        //     "name": "body",
-        //     "in": "body",
-        //     "schema": {
-        //       "type": "object",
-        //       "properties": {
-        //         "category_name": {
-        //           "example": "any"
-        //         },
-        //         "category_id": {
-        //           "example": 3
-        //         }
-        //       }
-        //     }
-        //   }
 
   try{
+
+    let category = {
+      category_name: req.body.category_name,
+      category_id: req.body.category_id
+    }
+
     const response = valid.validateCategory(req.body);
         if(response.error){
           res.status(422).json(response.error.message);
           return;
         }
     const categoryId = new ObjectId(req.params.categoryId);
-    const result = new mongodb.getDb().db('rexcube').collection('category').replaceOne({_id:categoryId}, req.body);
+    const result = new mongodb.getDb().db('rexcube').collection('category').replaceOne({_id:categoryId}, category);
     if (result.modifiedCount != 0) {
         res.status(204).send();
     } 
 } catch {
-    res.status(500).send(err.message);
+    res.status(500).send();
 }
 };
 

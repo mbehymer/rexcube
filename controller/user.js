@@ -27,29 +27,16 @@ const createUser = async (req, res) => {
   // #swagger.tags = ['User']
   // #swagger.description = "Create a new user"
 
-  //#swagger.parameters = {
-  //     "name": "body",
-  //     "in": "body",
-  //     "schema": {
-  //       "type": "object",
-  //       "properties": {
-  //         "email": {
-  //           "example": "myemail@email.com"
-  //         },
-  //         "userName": {
-  //           "example": "any"
-  //         },
-  //          "isAdmin": {
-  //           "example": false
-  //         },
-  //         "favorites": {
-  //           "example": [8,4,12]
-  //         }
-  //       }
-  //     }
-  //   }
 
   try {
+
+    let userAccount = {
+      email: req.oidc.user.email,
+      userName: req.oidc.user.nickname,
+      isAdmin: false,
+      favorites: [],
+    };
+
     const response = valid.validateUser(req.body);
     if(response.error){
       res.status(422).json(response.error.message);
@@ -64,13 +51,10 @@ const createUser = async (req, res) => {
       .collection('users').countDocuments({ email: userEmail });
     // console.log(myCount);
 
+    
+
     if (myCount === 0) {
-      let userAccount = {
-        email: req.oidc.user.email,
-        userName: req.oidc.user.nickname,
-        isAdmin: false,
-        favorites: [],
-      };
+
 
       const result = await mongodb
         .getDb()
@@ -92,46 +76,34 @@ const updateUser = async (req, res) => {
   // #swagger.tags = ['User']
   // #swagger.description = "Update user by id"
 
-  // #swagger.parameters['userId'] = {
-  // "in": "path",
-  // "required": true,
-  // "type": "string"
-  // },
-  // {
-  //   "name": "body",
-  //   "in": "body",
-  //   "schema": {
-  //     "type": "object",
-  //     "properties": {
-  //       "email": {
-  //         "example": "any"
-  //       },
-  //       "username":{
-  //         "example":"any"
-  //       },
-  //       "favorites": {
-  //         "example": [3,1,9]
-  //       },
-  //       "isAdmin":{
-  //         "example":false
-  //       }
-  //     }
-  //   }
-  // }
+  /* swagger.parameters['email'] = {"example":"myemail@email.com"} */
+  /* swagger.parameters['userName'] ={"example":"any"} */
+  /* swagger.parameters['isAdmin'] = {"example":false}*/
+  /* swagger.paramters['favorites'] = {"example": [8,4,11,2]} */
+
+
+
 
   try {
+    let userAccount = {
+      email: req.body.email,
+      userName: req.body.nickname,
+      isAdmin: false,
+      favorites: req.body.favorites,
+    };
+
     const response = valid.validateUser(req.body);
     if(response.error){
       res.status(422).json(response.error.message);
       return;
     }
     const userId = new ObjectId(req.params.requestId);
-    const result = new mongodb.getDb().db('rexcube').collection('users').replaceOne({ _id: userId }, req.body);
+    const result = new mongodb.getDb().db('rexcube').collection('users').replaceOne({ _id: userId }, userAccount);
     if (result.modifiedCount != 0) {
       res.status(204).send();
     }
   } catch {
-    res.status(500).send(err.message);
+    res.status(500);
   }
 };
 
