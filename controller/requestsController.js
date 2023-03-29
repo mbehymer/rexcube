@@ -46,47 +46,8 @@ const createNewRequest = async (req, res) => {
     // #swagger.tags = ['Activity Requests']
     // #swagger.description = "Create a new activity request"
 
-    //#swagger.parameters = {
-    //     "name": "body",
-    //     "in": "body",
-    //     "schema": {
-    //       "type": "object",
-    //       "properties": {
-    //         "userId": {
-    //           "example": "any"
-    //         },
-    //         "title": {
-    //           "example": "any"
-    //         },
-    //         "info": {
-    //           "example": "any"
-    //         },
-    //          "location": {
-    //           "example": "any"
-    //         },
-    //         "category": {
-    //           "example": [1,9]
-    //         },
-    //         "website": {
-    //           "example": "any"
-    //         },
-    //         "address": {
-    //            "example":"any"
-    //          },
-    //         "image": {
-    //            "example": {
-    //              "name": {
-    //                  "example": "image name"
-    //                },
-    //              "b64": {
-    //                  "example": "a very long bas 64 string"
-    //                }
-    //              }
-    //           }
-    //       }
-    //     }
-    //   }
-
+// will need to add these lines for the image example when creating swagger 
+// {"name":  "any", "b64": "a very long bas 64 string"}
 
     // {
     //     "userId": "1",
@@ -136,66 +97,35 @@ const createNewRequest = async (req, res) => {
 const updateRequest = async (req, res) => {
     // #swagger.tags = ['Activity Requests']
     // #swagger.description = "Update activity request by id"
-
-    //#swagger.parameters['requestId'] = {
-        //     "in": "path",
-        //     "required": true,
-        //     "type": "string"
-        //   },
-        //   {
-        //     "name": "body",
-        //     "in": "body",
-        //     "schema": {
-        //       "type": "object",
-        //       "properties": {
-        //         "userId": {
-        //           "example": "any"
-        //         },
-        //         "title": {
-        //           "example": "any"
-        //         },
-        //         "info": {
-        //           "example": "any"
-        //         },
-        //          "location": {
-        //           "example": "any"
-        //         },
-        //         "category": {
-        //           "example": [1,9]
-        //         },
-        //         "website": {
-        //           "example": "any"
-        //         },
-        //         "address": {
-        //            "example":"any"
-        //          },
-        //         "image": {
-        //            "example": {
-        //              "name": {
-        //                  "example": "image name"
-        //                },
-        //              "b64": {
-        //                  "example": "a very long bas 64 string"
-        //                }
-        //              }
-        //            }
-        //       }
-        //     }
-        //   }
+// will need to add these lines for the image example when creating swagger 
+// {"name":  "any", "b64": "a very long bas 64 string"}
+        
 
     try {
+        let request = {
+            activityId: new ObjectId(),
+            userId: req.body.userId,
+            location: req.body.location,
+            title: req.body.title,
+            info: req.body.info,
+            category: req.body.category,
+            website: req.body.website,
+            address: req.body.address,
+            image: req.body.image
+        };
+        
         const response = valid.validateRequest(req.body);
         if(response.error){
           res.status(422).json(response.error.message);
           return;
         }
         const requestId = new ObjectId(req.params.requestId);
-        const result = new mongodb.getDb().db('rexcube').collection('requests').replaceOne({ _id: requestId }, req.body);
+        const result = new mongodb.getDb().db('rexcube').collection('requests').replaceOne({ _id: requestId }, request);
         if (result.modifiedCount != 0) {
             res.status(204).send();
         }
     } catch {
-        res.status(500).send(err.message);
+        res.status(500).send(error.message);
     }
 }
 

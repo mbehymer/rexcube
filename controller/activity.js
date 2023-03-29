@@ -79,43 +79,15 @@ const createActivity = async (req, res, next) => {
     // #swagger.tags = ['Activity']
     // #swagger.description = "Create a new activity(admin only)"
 
-    //#swagger.parameters = {
-    //     "name": "body",
-    //     "in": "body",
-    //     "schema": {
-    //       "type": "object",
-    //       "properties": {
-    //         "title": {
-    //           "example": "any"
-    //         },
-    //         "info": {
-    //           "example": "any"
-    //         },
-    //          "location": {
-    //           "example": "any"
-    //         },
-    //         "category": {
-    //           "example": [1,9]
-    //         },
-    //         "website": {
-    //           "example": "any"
-    //         },
-    //         "address": {
-    //            "example":"any"
-    //          },
-    //         "image": {
-    //            "example": {
-    //              "name": {
-    //                  "example": "image name"
-    //                },
-    //              "b64": {
-    //                  "example": "a very long bas 64 string"
-    //                }
-    //              }
-    //           }
-    //       }
-    //     }
-    //   }
+    // /* swagger.parameters['title'] = {"example":"Hiking trail"} */
+    // /* swagger.parameters['location'] ={"example":"North, South of Rexburg"} */
+    // /* swagger.parameters['address'] ={"example":"123 street blvd, rexburg, ID"} */
+    // /* swagger.parameters['info'] = {"example":"cool place you should visit"}*/
+    // /* swagger.paramters['category'] = {"example": [8,4,11,2]} */
+    // /* swagger.paramters['website'] = {"example": "place.com"} */
+    // /* swagger.parameters['image'] ={"type":"object", "example":{"name": "mango shop", "b64":"super long random string"}} */
+
+
  
   try {
     const response = valid.validateRequest(req.body);
@@ -134,20 +106,13 @@ const createActivity = async (req, res, next) => {
       addres: req.body.address,
       image: req.body.image
     };
-    // console.log(todo);
-    // console.log()
 
-    // const response = valid.validateContact(todo);
-    // if (response.error) {
-    //     res.status(422).json(response.error.message);
-    //     return;
-    // }
 
     const result = await mongodb
       .getDb()
       .db('rexcube')
       .collection('activity')
-      .insertOne(activity);
+      .insertOne(req.body);
     if (result.acknowledged) {
       res.status(201).json(result)
     } else {
