@@ -75,6 +75,23 @@ const getSingleActivityByCategory = async (req, res, next) => {
 
 };
 
+
+const isAdmin = async () => {
+  try {
+    const email = req.oidc.user.email;
+    const result = await mongodb
+      .getDb()
+      .db('rexcube')
+      .collection('users')
+      .find({ email: email });
+    return result.isAdmin
+  } catch (error) {
+    // res.status(500).json(error.message || 'Some error occurred while getting the user.');
+  }
+
+}
+
+
 const createActivity = async (req, res, next) => {
     // #swagger.tags = ['Activity']
     // #swagger.description = "Create a new activity(admin only)"
@@ -118,43 +135,41 @@ const createActivity = async (req, res, next) => {
     //   }
  
   try {
-    const response = valid.validateRequest(req.body);
-        if(response.error){
-          res.status(422).json(response.error.message);
-          return;
-        }
 
-    let activity = {
-      act_id: new ObjectId(),
-      location: req.body.location,
-      title: req.body.title,
-      info: req.body.info,
-      category: req.body.category,
-      website: req.body.website,
-      addres: req.body.address,
-      image: req.body.image
-    };
-    // console.log(todo);
-    // console.log()
+    if (isAdmin()) {
 
-    const response = valid.validateContact(todo);
-    if (response.error) {
-        res.status(422).json(response.error.message);
-        return;
-    }
+      const response = valid.validateRequest(req.body);
+          if(response.error){
+            res.status(422).json(response.error.message);
+            return;
+          }
 
-    const result = await mongodb
-      .getDb()
-      .db('rexcube')
-      .collection('activity')
-      .insertOne(activity);
-    if (result.acknowledged) {
-      res.status(201).json(result)
+      let activity = {
+        act_id: new ObjectId(),
+        location: req.body.location,
+        title: req.body.title,
+        info: req.body.info,
+        category: req.body.category,
+        website: req.body.website,
+        addres: req.body.address,
+        image: req.body.image
+      };
+
+      const result = await mongodb
+        .getDb()
+        .db('rexcube')
+        .collection('activity')
+        .insertOne(activity);
+      if (result.acknowledged) {
+        res.status(201).json(result)
+      } else {
+        res.status(500).json({ err: 'Could not create a activity.' })
+      }
     } else {
-      res.status(500).json({ err: 'Could not create a new Todo.' })
+      res.status(422).json({ err: 'Admin Level is required to access.' })
     }
   } catch (err) {
-    console.log("insertTodo: ", err)
+    console.log("insertActivity: ", err)
   }
 };
 
