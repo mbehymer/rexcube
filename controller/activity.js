@@ -90,14 +90,13 @@ const createActivity = async (req, res, next) => {
 
  
   try {
-      const response = valid.validateRequest(req.body);
+      const response = valid.validateActivity(req.body);
           if(response.error){
             res.status(422).json(response.error.message);
             return;
           }
 
     let activity = {
-      act_id: new ObjectId(),
       location: req.body.location,
       title: req.body.title,
       info: req.body.info,
