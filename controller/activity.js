@@ -112,7 +112,7 @@ const createActivity = async (req, res, next) => {
       .getDb()
       .db('rexcube')
       .collection('activity')
-      .insertOne(req.body);
+      .insertOne(activity);
     if (result.acknowledged) {
       res.status(201).json(result)
     } else {
