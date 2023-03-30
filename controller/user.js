@@ -29,7 +29,6 @@ const createUser = async (req, res) => {
 
 
   try {
-
     let userAccount = {
       email: req.oidc.user.email,
       userName: req.oidc.user.nickname,
@@ -38,7 +37,7 @@ const createUser = async (req, res) => {
     };
 
     const response = valid.validateUser(req.body);
-    if(response.error){
+    if (response.error) {
       res.status(422).json(response.error.message);
       return;
     }
@@ -51,11 +50,7 @@ const createUser = async (req, res) => {
       .collection('users').countDocuments({ email: userEmail });
     // console.log(myCount);
 
-    
-
     if (myCount === 0) {
-
-
       const result = await mongodb
         .getDb()
         .db('rexcube')
@@ -64,7 +59,7 @@ const createUser = async (req, res) => {
       if (result.acknowledged) {
         res.status(201).json(result).send()
       } else {
-        res.status(500).json({ err: 'Could not create a new Todo.' })
+        res.status(500).json({ err: 'Could not create a new User.' })
       }
     }
   } catch (error) {
@@ -93,12 +88,12 @@ const updateUser = async (req, res) => {
     };
 
     const response = valid.validateUser(req.body);
-    if(response.error){
+    if (response.error) {
       res.status(422).json(response.error.message);
       return;
     }
     const userId = new ObjectId(req.params.requestId);
-    const result = new mongodb.getDb().db('rexcube').collection('users').replaceOne({ _id: userId }, userAccount);
+    const result = new mongodb.getDb().db('rexcube').collection('users').replaceOne({ _id: userId }, { $set: userAccount });
     if (result.modifiedCount != 0) {
       res.status(204).send();
     }

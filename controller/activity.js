@@ -5,8 +5,8 @@ const valid = require("../helper/index.js");
 const mongodb = require('../db/connect.js');
 
 const getActivity = async (req, res, next) => {
-    // #swagger.tags = ['Activity']
-      // #swagger.description = "Get all the activities"
+  // #swagger.tags = ['Activity']
+  // #swagger.description = "Get all the activities"
 
 
 
@@ -76,25 +76,25 @@ const getSingleActivityByCategory = async (req, res, next) => {
 };
 
 const createActivity = async (req, res, next) => {
-    // #swagger.tags = ['Activity']
-    // #swagger.description = "Create a new activity(admin only)"
+  // #swagger.tags = ['Activity']
+  // #swagger.description = "Create a new activity(admin only)"
 
-    // /* swagger.parameters['title'] = {"example":"Hiking trail"} */
-    // /* swagger.parameters['location'] ={"example":"North, South of Rexburg"} */
-    // /* swagger.parameters['address'] ={"example":"123 street blvd, rexburg, ID"} */
-    // /* swagger.parameters['info'] = {"example":"cool place you should visit"}*/
-    // /* swagger.paramters['category'] = {"example": [8,4,11,2]} */
-    // /* swagger.paramters['website'] = {"example": "place.com"} */
-    // /* swagger.parameters['image'] ={"type":"object", "example":{"name": "mango shop", "b64":"super long random string"}} */
+  // /* swagger.parameters['title'] = {"example":"Hiking trail"} */
+  // /* swagger.parameters['location'] ={"example":"North, South of Rexburg"} */
+  // /* swagger.parameters['address'] ={"example":"123 street blvd, rexburg, ID"} */
+  // /* swagger.parameters['info'] = {"example":"cool place you should visit"}*/
+  // /* swagger.paramters['category'] = {"example": [8,4,11,2]} */
+  // /* swagger.paramters['website'] = {"example": "place.com"} */
+  // /* swagger.parameters['image'] ={"type":"object", "example":{"name": "mango shop", "b64":"super long random string"}} */
 
 
- 
+
   try {
-      const response = valid.validateActivity(req.body);
-          if(response.error){
-            res.status(422).json(response.error.message);
-            return;
-          }
+    const response = valid.validateActivity(req.body);
+    if (response.error) {
+      res.status(422).json(response.error.message);
+      return;
+    }
 
     let activity = {
       location: req.body.location,
@@ -102,8 +102,8 @@ const createActivity = async (req, res, next) => {
       info: req.body.info,
       category: req.body.category,
       website: req.body.website,
-      addres: req.body.address,
-      image: req.body.image
+      address: req.body.address,
+      image: { name: req.body.name, b64: req.body.b64 }
     };
 
 
@@ -152,5 +152,3 @@ const deleteActivity = async (req, res, next) => {
 
 
 module.exports = { getActivity, getSingleActivityById, createActivity, getSingleActivityByCategory, deleteActivity };
-
-
