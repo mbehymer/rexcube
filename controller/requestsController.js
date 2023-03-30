@@ -68,7 +68,6 @@ const createNewRequest = async (req, res) => {
         }
 
         let request = {
-            activityId: new ObjectId(),
             userId: req.body.userId,
             location: req.body.location,
             title: req.body.title,
@@ -119,7 +118,7 @@ const updateRequest = async (req, res) => {
           return;
         }
         const requestId = new ObjectId(req.params.requestId);
-        const result = new mongodb.getDb().db('rexcube').collection('requests').replaceOne({ _id: {$set:requestId } }, request);
+        const result = new mongodb.getDb().db('rexcube').collection('requests').replaceOne({ _id: requestId  }, {$set: request});
         if (result.modifiedCount != 0) {
             res.status(204).send();
         }

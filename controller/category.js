@@ -32,7 +32,7 @@ const updateCategory = async (req, res) => {
           return;
         }
     const categoryId = new ObjectId(req.params.categoryId);
-    const result = new mongodb.getDb().db('rexcube').collection('category').replaceOne({_id:categoryId}, category);
+    const result = new mongodb.getDb().db('rexcube').collection('category').replaceOne({_id:categoryId}, {$set: category});
     if (result.modifiedCount != 0) {
         res.status(204).send();
     } 
