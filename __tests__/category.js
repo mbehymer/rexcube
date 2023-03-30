@@ -8,12 +8,12 @@ describe('Check if the Update category Route Works', () => {
         const res = await request(app).put('/category');
         expect(res.header['content-type']).toBe('text/html; charset=utf-8');
     });
-    });
+});
 
 describe('Post a new category', () => {
     test('responds to /category', async () => {
         const res = await request(app).post('/category');
         expect(res.header['content-type']).toBe('application/json; charset=utf-8');
     });
-    });
+});
 

@@ -34,8 +34,8 @@ app.get('/', (req, res) => {
   // res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
   //#swagger.tags = ['User Authentication Status']
   const authenticate = req.oidc.isAuthenticated();
-  if(authenticate){
-    res.redirect(process.env.BASE_URL + 'profile');
+  if (authenticate) {
+    res.redirect(process.env.BASE_URL + '/profile');
   } else {
     res.send('logged out');
   }

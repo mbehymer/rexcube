@@ -13,15 +13,14 @@ function validateUser(user) {
 
 function validateActivity(activity) {
   const JoiSchema = Joi.object({
-    act_id: Joi.number().required(),
     location: Joi.string().required(),
     title: Joi.string().min(1).max(25).required(),
     info: Joi.string().required(),
-    category: Joi.array().items(Joi.number()), 
+    category: Joi.array().items(Joi.number()),
     website: Joi.string().required(),
     address: Joi.string().required(),
     image: Joi.object({
-      name: Joi.string(), 
+      name: Joi.string(),
       b64: Joi.string()
     }),
   }).options({ abortEarly: false });
@@ -32,7 +31,7 @@ function validateActivity(activity) {
 function validateRequest(request) {
   const JoiSchema = Joi.object({
     // isPublic: Joi.bool().required(),
-    userId: Joi.string().required(),
+    // userId: Joi.string().required(),
     location: Joi.string().required(),
     title: Joi.string().required(),
     info: Joi.string().required(),
@@ -40,7 +39,7 @@ function validateRequest(request) {
     website: Joi.string().required(),
     address: Joi.string().required(),
     image: Joi.object({
-      name: Joi.string(), 
+      name: Joi.string(),
       b64: Joi.string()
     }),
   }).options({ abortEarly: false });

@@ -5,7 +5,7 @@ const { requiresAuth } = require('express-openid-connect');
 routes.get('/:userId', controller.getUserById);
 routes.post('/', controller.createUser);
 
-routes.delete('/id', requiresAuth(), controller.deleteUser);
+routes.delete('/:id', requiresAuth(), controller.deleteUser);
 
 routes.put('/:userId', controller.updateUser);
 
