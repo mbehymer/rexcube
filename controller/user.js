@@ -98,7 +98,7 @@ const updateUser = async (req, res) => {
       return;
     }
     const userId = new ObjectId(req.params.requestId);
-    const result = new mongodb.getDb().db('rexcube').collection('users').replaceOne({ _id: userId }, userAccount);
+    const result = await mongodb.getDb().db('rexcube').collection('users').replaceOne({ _id: userId }, userAccount);
     if (result.modifiedCount != 0) {
       res.status(204).send();
     }
