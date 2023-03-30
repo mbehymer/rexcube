@@ -103,7 +103,6 @@ const updateRequest = async (req, res) => {
 
     try {
         let request = {
-            activityId: new ObjectId(),
             userId: req.body.userId,
             location: req.body.location,
             title: req.body.title,
@@ -111,7 +110,7 @@ const updateRequest = async (req, res) => {
             category: req.body.category,
             website: req.body.website,
             address: req.body.address,
-            image: req.body.image
+            image: req.body.image 
         };
         
         const response = valid.validateRequest(req.body);
@@ -120,7 +119,7 @@ const updateRequest = async (req, res) => {
           return;
         }
         const requestId = new ObjectId(req.params.requestId);
-        const result = new mongodb.getDb().db('rexcube').collection('requests').replaceOne({ _id: requestId }, request);
+        const result = new mongodb.getDb().db('rexcube').collection('requests').replaceOne({ _id: {$set:requestId } }, request);
         if (result.modifiedCount != 0) {
             res.status(204).send();
         }

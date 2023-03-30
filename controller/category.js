@@ -5,9 +5,6 @@ const valid = require("../helper/index");
 const createCategory = async (req, res) => {
     // #swagger.tags = ['Category']
     // #swagger.description = "Creat category"
-
-      // swagger.parameters['category_name'] = {"example":"Family Friendly"}
-  // swagger.parameters['category_id'] = {"example": 12}
   
     const response = valid.validateCategory(req.body);
     if(response.error){
