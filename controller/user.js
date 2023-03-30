@@ -88,7 +88,7 @@ const updateUser = async (req, res) => {
     let userAccount = {
       email: req.body.email,
       userName: req.body.nickname,
-      isAdmin: false,
+      isAdmin: req.body.isAdmin,
       favorites: req.body.favorites,
     };
 
