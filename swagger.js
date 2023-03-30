@@ -9,7 +9,7 @@ const doc = {
   host: 'rexcube.onrender.com',
   // host: 'localhost:8080',
   schemes: ['https', 'http'],
-  
+
   // schemes: ['http'],
 };
 

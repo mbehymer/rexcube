@@ -1,8 +1,8 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "My API",
-    "description": "Description",
+    "title": "RexCube",
+    "description": "An API for RexCube App",
     "version": "1.0.0"
   },
   "host": "rexcube.onrender.com",
@@ -54,7 +54,7 @@
         "tags": [
           "Activity"
         ],
-        "description": "",
+        "description": "Get all the activities",
         "parameters": [],
         "responses": {
           "200": {
@@ -103,21 +103,17 @@
           {
             "name": "body",
             "in": "body",
-            "description": "Some description about the activity",
             "schema": {
               "type": "object",
               "properties": {
                 "location": {
-                  "type": "string",
-                  "example": "North"
+                  "example": "any"
                 },
                 "title": {
-                  "type": "string",
-                  "example": "Name of Activity"
+                  "example": "any"
                 },
                 "info": {
-                  "type": "string",
-                  "example": "Time, cost, etc., about the activity."
+                  "example": "any"
                 },
                 "category": {
                   "example": "any"
@@ -128,7 +124,10 @@
                 "address": {
                   "example": "any"
                 },
-                "image": {
+                "name": {
+                  "example": "any"
+                },
+                "b64": {
                   "example": "any"
                 }
               }
@@ -180,7 +179,7 @@
         "tags": [
           "Activity"
         ],
-        "description": "",
+        "description": "Delete activity by id",
         "parameters": [
           {
             "name": "id",
@@ -218,9 +217,8 @@
     },
     "/requests/{userId}": {
       "get": {
-        "description": "",
-        "produces": [
-          "application/json"
+        "tags": [
+          "Activity Requests"
         ],
         "description": "Get request by id",
         "produces": [
@@ -257,9 +255,6 @@
             "schema": {
               "type": "object",
               "properties": {
-                "userId": {
-                  "example": "any"
-                },
                 "location": {
                   "example": "any"
                 },
@@ -278,7 +273,10 @@
                 "address": {
                   "example": "any"
                 },
-                "image": {
+                "name": {
+                  "example": "any"
+                },
+                "b64": {
                   "example": "any"
                 }
               }
@@ -386,13 +384,32 @@
           "Category"
         ],
         "description": "Creat category",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "category_name": {
+                  "example": "any"
+                },
+                "category_id": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "201": {
+            "description": "Created"
           },
           "422": {
             "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -487,6 +504,9 @@
                   "example": "any"
                 },
                 "nickname": {
+                  "example": "any"
+                },
+                "isAdmin": {
                   "example": "any"
                 },
                 "favorites": {
