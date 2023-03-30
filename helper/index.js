@@ -13,7 +13,7 @@ function validateUser(user) {
 
 function validateActivity(activity) {
   const JoiSchema = Joi.object({
-    activityId: Joi.number().required(),
+    act_id: Joi.number().required(),
     location: Joi.string().required(),
     title: Joi.string().min(1).max(25).required(),
     info: Joi.string().required(),

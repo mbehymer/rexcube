@@ -90,11 +90,11 @@ const createActivity = async (req, res, next) => {
 
  
   try {
-    const response = valid.validateRequest(req.body);
-        if(response.error){
-          res.status(422).json(response.error.message);
-          return;
-        }
+      const response = valid.validateRequest(req.body);
+          if(response.error){
+            res.status(422).json(response.error.message);
+            return;
+          }
 
     let activity = {
       act_id: new ObjectId(),
@@ -119,7 +119,7 @@ const createActivity = async (req, res, next) => {
       res.status(500).json({ err: 'Could not create a new Todo.' })
     }
   } catch (err) {
-    console.log("insertTodo: ", err)
+    console.log("insertActivity: ", err)
   }
 };
 
