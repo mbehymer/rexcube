@@ -17,7 +17,7 @@
   "scripts": {
     "start": "node server.js",
     "swagger": "node ./swagger.js",
-    "dev-start": "nodemon server.s",
+    "dev-start": "nodemon server.js",
     "test": "jest"
   },
   "repository": {
