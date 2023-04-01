@@ -48,7 +48,6 @@ const createUser = async (req, res) => {
       .getDb()
       .db('rexcube')
       .collection('users').countDocuments({ email: userEmail });
-    // console.log(myCount);
 
     if (myCount === 0) {
       const result = await mongodb
