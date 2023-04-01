@@ -2,8 +2,8 @@ const Joi = require("joi");
 
 function validateUser(user) {
   const JoiSchema = Joi.object({
-    email: Joi.email().required(),
-    userName: Joi.min(5).max(20).required(),
+    email: Joi.string().required(),
+    userName: Joi.required(),
     isAdmin: Joi.required(),
     favorites: Joi.array().items(Joi.string()), //Make sure each Id is a string
   }).options({ abortEarly: false });
